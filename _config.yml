@@ -13,6 +13,9 @@ baseurl: ""
 
 # Of course don't forget to change the username and projectname to YOUR username and project
 
+# Use this Github repository as basis of remote theme
+remote_theme: abelcheung/beautiful-jekyll
+
 # Name of website
 title: My website
 
@@ -32,7 +35,7 @@ navbar-links:
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/img/avatar-icon.png"
+avatar: "/assets/img/avatar-icon.png"
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
@@ -55,9 +58,9 @@ footer-link-col: "#404040"
 # Alternatively, the navbar, footer, and page background can be set to use background images
 # instead of colour
 
-# navbar-img: "/img/bgimage.png"
-# footer-img: "/img/bgimage.png"
-# page-img: "/img/bgimage.png"
+# navbar-img: "/assets/img/bgimage.png"
+# footer-img: "/assets/img/bgimage.png"
+# page-img: "/assets/img/bgimage.png"
 
 # --- Footer options --- #
 
@@ -204,9 +207,7 @@ prose:
     - _config.yml
     - /_layouts
     - /_includes
-    - /css
-    - /img
-    - /js
+    - /assets
   metadata:
     _posts:
       - name: "layout"
@@ -248,6 +249,7 @@ prose:
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-remote-theme
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
