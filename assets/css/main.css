@@ -707,6 +707,12 @@ td.gutter {
   margin-bottom: 30px;
 }
 
+.btn-social-icon > :first-child {
+  /* occur after FontAwesome 5.x switch */
+	top: 4.8px;
+	bottom: unset;
+}
+
 /* --- Notification boxes --- */
 .box-note, .box-warning, .box-error, .box-success {
   padding: 15px 15px 15px 10px;
