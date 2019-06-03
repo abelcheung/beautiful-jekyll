@@ -1,14 +1,14 @@
-# Beautiful Jekyll
+# Fork of Beautiful Jekyll
 
 Forked from official Beautiful Jekyll theme, with changes moving faster
 forward, since Dean Attali desires a more stable theme as it has a large
-user base. Intended changes include:
+user base. Intended and finished changes include:
 
 - [x] Remote theme support
 - [x] URL settings follow Jekyll guideline
 - [x] Font Awesome updated to 5.8
-- [ ] Update Bootstrap with relevant intrastructure and code changes
-  - Likely 4.x with SASS integration
+- [x] Bootstrap updated to 3.4.1 to migitate XSS vulnerability
+- [ ] Use Bootstrap 4.x with SASS integration
 - [ ] More SASS refactoring, currently theme only uses raw CSS
 
 Hopefully some of the modifications can be merged upstream in the future.
