@@ -1,20 +1,5 @@
 # --- General options --- #
 
-# To spare yourself from trouble, just leave url and baseurl undefined,
-# GitHub can automatically set these properties accordingly for user
-# page and project page.
-#
-# Indeed you can still set the properties yourself, in that case don't
-# forget to change the username and projectname to YOUR username and project
-
-# url is the website URL up to host name, without trailing slash
-#url: "https://username.github.io"
-
-# For GitHub user page, baseurl is empty string. Don't set to "/".
-# For GitHub project page, set it to project name with leading slash,
-# e.g. "/myproject". However, don't add trailing slash.
-#baseurl: ""
-
 # Use this Github repository as basis of remote theme
 remote_theme: abelcheung/beautiful-jekyll
 
@@ -22,7 +7,17 @@ remote_theme: abelcheung/beautiful-jekyll
 title: My website
 
 # Short description of your site
-description: A virtual proof that name is awesome!
+description: A virtual proof that I'm awesome
+
+# --- Local development options ---
+# If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
+# *** If you're not sure what this mean, then leave this section as it is. Only modify the url and baseurl if you know what you're doing!***
+
+# url is the the website domain URL without a trailing slash
+#url: "https://example.com"
+
+# baseurl should be an empty string
+#baseurl: ""
 
 # --- Navigation bar options --- #
 
@@ -33,7 +28,8 @@ navbar-links:
     - Learn markdown: "http://www.markdowntutorial.com/"
     - GitHub Pages: "https://pages.github.com/"
     - Jekyll Doc: "https://jekyllrb.com/docs/"
-    - Theme Author: "http://deanattali.com"
+  Author's home: "http://deanattali.com"
+>>>>>>> d674dae... mention url and baseurl only need to be modified in local dev
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
