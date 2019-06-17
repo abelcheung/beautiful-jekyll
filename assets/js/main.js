@@ -40,6 +40,15 @@ var main = {
         });
     });
 
+    // Open external link in new tab. Discussion about rel=noopener:
+    // https://mathiasbynens.github.io/rel-noopener/
+    $('a').filter(function(){
+      return this.hostname && this.hostname !== location.hostname;
+    })
+      .addClass("external-link")
+      .attr("target", "_blank")
+      .attr("rel", "noopener");
+
     // Shorten the navbar after scrolling a little bit down
     $(window).scroll(function () {
       if ($(".navbar").offset().top > 50) {
