@@ -5,8 +5,9 @@ forward, since Dean Attali desires a more stable theme as it has a large
 user base. Intended and finished changes include:
 
 - [x] Remote theme support
-- [x] URL settings follow Jekyll guideline
-- [x] Font Awesome updated to 5.8
+- [x] URL settings follow Jekyll guideline (available upstream)
+- [x] Font Awesome updated to 5.9.0 webfont version
+    - Not using SVG due to [problem in IE for CSS pseudo element][4]
 - [x] Bootstrap updated to 3.4.1 to migitate XSS vulnerability
 - [ ] Use Bootstrap 4.x with SASS integration
 - [ ] More SASS refactoring, currently theme only uses raw CSS
@@ -16,7 +17,6 @@ For any issues not mentioned here, please visit upstream theme
 repository for info.
 
 ## Remote theme support
-
 Please check out [my example repository][1] on how to use this theme as
 remote theme. Only limited files need to be copied (mainly config and
 some top level files), no template and no asset needed, unless you
@@ -28,17 +28,6 @@ Forking would copy each and every file, which defeats the purpose of
 remote theme per se.
 
 [1]: https://github.com/abelcheung/site-test/
-
-## Special note on URL settings
-
-Beautfiul-jekyll theme deviates from standard Jekyll recommended
-settings, which would cause some liquid URL filters to fail. This
-repository uses standardized Jekyll setting, but that would mean
-old theme adapters would need some work to get it working.
-
-When in doubt, simply comment out `url` and `baseurl` properties
-in `_config.yml`. GitHub would determine correct values for them
-automatically.
 
 ## Development using docker-compose
 
@@ -75,7 +64,7 @@ and `site.url` would be forcefully set to `http://0.0.0.0:4000/` as result.
 If you use custom `site.url`, setting it to any other value suffices, not
 necessarily 'production'.
 
-With Docker properly set up to make use of native system (Linux, or WSL &ndash;
+With Docker properly set up to make use of native system (Linux, or WSL --
 Windows Subsystem for Linux), it is a matter of
 
 ```sh
@@ -98,8 +87,6 @@ One of the major obstacle is, it's very probable for docker container to fail
 accessing host folder, since shared folder inside Virtualbox image is not
 properly configured. To alleviate the problem, one can follow
 [the guide written by Charles Stover][2], which is briefly:
-
-[2]: https://medium.com/@Charles_Stover/fixing-volumes-in-docker-toolbox-4ad5ace0e572
 
 1. Use Virtualbox UI, turn off virtual machine (alternatively, run
    `docker-machine stop`, but next step needs Virtualbox anyway)
@@ -128,4 +115,6 @@ services:
 **BEWARE:** Jekyll `--watch` behavior (default since 2.4) won't work by
 itself on Virtualbox shared folder, [`--force_polling` is also needed][3].
 
+[2]: https://medium.com/@Charles_Stover/fixing-volumes-in-docker-toolbox-4ad5ace0e572
 [3]: https://stackoverflow.com/a/23084706
+[4]: https://github.com/FortAwesome/Font-Awesome/issues/12994
