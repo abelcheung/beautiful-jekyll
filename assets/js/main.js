@@ -45,9 +45,14 @@ var main = {
     $('a').filter(function(){
       return this.hostname && this.hostname !== location.hostname;
     })
-      .addClass("external-link")
+      .addClass("link-icon link-external")
       .attr("target", "_blank")
       .attr("rel", "noopener");
+
+    const ext = [ "pdf", "zip", "xz", "xlsx", "docx" ];
+    ext.forEach (function(e){
+      $('a[href$=".' + e + '"]' ).addClass('link-icon link-' + e);
+    });
 
     // Shorten the navbar after scrolling a little bit down
     $(window).scroll(function () {
