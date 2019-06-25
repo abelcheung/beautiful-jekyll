@@ -1,59 +1,14 @@
 // vim: set sw=2 ts=2 sts=2 et :
 // Dean Attali / Beautiful Jekyll 2016
 
+define (['jquery','bootstrap'], function($){
+
 var main = {
 
   bigImgEl: null,
   numImgs: null,
 
   init: function () {
-
-    // Smooth scrolling when jumping to anchor of same page,
-    // and prevents target text hiding under navigation bar.
-    // Especially useful for footnote jumping.
-    //
-    $('a[href^="#"]').not([href = "#"]).click(function (ev) {
-      // Caveat: kramdown footnote id contains colon which can be confused with pseudo elements
-      // https://learn.jquery.com/using-jquery-core/faq/how-do-i-select-an-element-by-an-id-that-has-characters-used-in-css-notation/
-      var target = $($(this).attr('href').replace(/([:\.\[\],=@])/g, "\\$1"));
-      if (!target.length) {
-        return;
-      }
-      ev.preventDefault();
-      $('html, body').animate({
-          scrollTop: target.offset().top - $('.navbar').height() - 50
-        }, {
-          duration: 'slow',
-          complete: function () {
-            // setting focus for target anchor
-            target.focus();
-            if (! target.is(':focus')) {
-              target.attr('tabindex', '-1');
-              target.focus();
-            }
-
-            // both 'html' and 'body' triggers callback, so each
-            // fadeToggle is called twice, simulating a slow blink
-            target.fadeToggle();
-            target.fadeToggle();
-          }
-        });
-    });
-
-    // Open external link in new tab. Discussion about rel=noopener:
-    // https://mathiasbynens.github.io/rel-noopener/
-    $('a').filter(function(){
-      return this.hostname && this.hostname !== location.hostname;
-    })
-      .addClass("link-icon link-external")
-      .attr("target", "_blank")
-      .attr("rel", "noopener");
-
-    const ext = [ "pdf", "zip", "xz", "xlsx", "docx" ];
-    ext.forEach (function(e){
-      $('a[href$=".' + e + '"]' ).addClass('link-icon link-' + e);
-    });
-
     // Shorten the navbar after scrolling a little bit down
     $(window).scroll(function () {
       if ($(".navbar").offset().top > 50) {
@@ -182,4 +137,6 @@ var main = {
   }
 };
 
-document.addEventListener('DOMContentLoaded', main.init);
+main.init();
+
+});
