@@ -5,6 +5,7 @@ forward, since Dean Attali desires a more stable theme as it has a large
 user base. Intended and finished changes include:
 
 - [x] Remote theme support
+- [x] [Require.JS](https://requirejs.org/) integration
 - [x] URL settings follow Jekyll guideline (available upstream)
 - [x] Font Awesome updated to 5.9.0 webfont version
     - Not using SVG due to [problem in IE for CSS pseudo element][4]
@@ -28,6 +29,79 @@ Forking would copy each and every file, which defeats the purpose of
 remote theme per se.
 
 [1]: https://github.com/abelcheung/site-test/
+
+## Require.JS integration
+
+With require.js, it is possible to load all required javascript libraries
+asynchronously with dependencies fulfilled. Major part of relevant config
+is available in [`assets/js/config.coffee`](assets/js/config.coffee).
+Note that even jQuery UI is listed, it is not utilized in any part of
+theme. Require.JS is intelligent enough to not load jQuery UI at all if
+it is determined to be unused. The entry is placed there so that one can
+use jQuery UI in their own additional scripts in future without modifying
+config.
+
+Besides one can write additional script for customization, without touching
+the upstream theme script. This customization can be as granular as
+per-layout or even per-page level. All of them uses `requirejs` key
+in config, and config support for all manual javascript loading (`js`,
+`ext-js` etc) are removed.
+
+<table>
+<tr>
+<th width="50%">Additional site script</th>
+<th width="50%">Per-layout or per-page script</th>
+</tr>
+<tr>
+<td valign="top" markdown="1">
+Add your script beside the main one in `_config.yml`, for example:
+
+```yaml
+requirejs:
+  - beautiful-jekyll
+  - myscript
+```
+</td>
+<td valign="top" markdown="1">
+Define relevant script inside front matter of layout or post file:
+
+```yaml
+---
+requirejs:
+  - myscript
+---
+(file content)
+```
+</td>
+</table>
+
+Notice the omission of `.js` file extension in above config fragments.
+All scripts are assumed to be placed in `assets/js` subfolder (see
+`baseUrl` setting in `config.coffee`); please either change this
+setting or prepend path to script name accordingly if you place your
+scripts in other locations.
+
+### Writing javascript in AMD style
+
+Although RequireJS can load traditional scripts and specify dependencies
+inside `config.coffee`, it is recommended to write your module in
+*Asynchronous Module Definition* style. TL;DR:
+
+```js
+define (['jquery'], function($){
+    // your code here
+});
+```
+
+In the example above, the first argument (module ID) is omitted.
+It suffices to write your script as an anonymous module. Second
+argument is array of dependencies your script would use.
+Finally it's *factory function*, with dependent modules as arguments.
+
+Merit for using AMD and usage details are out of scope of this document;
+[RequireJS website](https://requirejs.org/docs/whyamd.html) and
+[AMD JS Group](https://github.com/amdjs/amdjs-api/blob/master/AMD.md)
+already provide nice roundup about everything related to AMD.
 
 ## Development using docker-compose
 
