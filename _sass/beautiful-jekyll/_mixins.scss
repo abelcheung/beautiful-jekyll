@@ -1,0 +1,6 @@
+@mixin bgimage($img: false) {
+	@if $img {
+		background-image: url($img);
+		background-attachment: fixed;
+	}
+}
