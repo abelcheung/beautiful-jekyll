@@ -1,36 +1,29 @@
----
-layout: null
----
-
-@import url("pygment_highlights.css");
-
 /* --- General --- */
 
 body {
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: $font-family-serif;
   font-size: 18px;
-  color: #404040;
+  color: $text-col;
   position: relative;
-  background-color: {{ site.page-col }};
-  {% if site.page-img %}
-  background-image: url({{ site.page-img | relative_url }});
-  background-attachment: fixed;
-  {% endif %}
+  background-color: $page-col;
+  @if global-variable-exists(page-img) {
+	  @include bgimage($page-img);
+  }
 }
 p {
   line-height: 1.5;
   margin: 30px 0;
 }
 h1,h2,h3,h4,h5,h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   font-weight: 800;
 }
 a {
-  color: {{ site.link-col }};
+  color: $link-col;
 }
 a:hover,
 a:focus {
-  color: {{ site.hover-col }};
+  color: $hover-col;
 }
 blockquote {
   color: #808080;
@@ -50,14 +43,14 @@ hr.small {
 .main-content {
   padding-top: 80px;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .main-content {
     padding-top: 130px;
   }
 }
 
 .main-explain-area {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   padding: 15px inherit;
 }
 
@@ -68,12 +61,12 @@ hr.small {
 ::-moz-selection {
   color: white;
   text-shadow: none;
-  background-color: {{ site.hover-col }};
+  background-color: $hover-col;
 }
 ::selection {
   color: white;
   text-shadow: none;
-  background-color: {{ site.hover-col }};
+  background-color: $hover-col;
 }
 img::selection {
   color: white;
@@ -92,7 +85,7 @@ img {
   margin-top: 30px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .disqus-comments {
     margin-top: 40px;
   }
@@ -106,13 +99,12 @@ img {
 /* --- Navbar --- */
 
 .navbar-custom {
-  background-color: {{ site.navbar-col }};
-  border-bottom: 1px solid #EAEAEA;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  {% if site.navbar-img %}
-  background-image: url({{ site.navbar-img | relative_url }});
-  background-attachment: fixed;
-  {% endif %}
+  background-color: $navbar-col;
+  border-bottom: 1px solid scale-color($color: $navbar-col, $lightness: -5%);
+  font-family: $font-family-sans-serif;
+  @if global-variable-exists(navbar-img) {
+	  @include bgimage($navbar-img);
+  }
 }
 
 .navbar-custom .nav li a {
@@ -124,14 +116,14 @@ img {
 .navbar-custom .navbar-brand,
 .navbar-custom .nav li a {
   font-weight: 800;
-  color: {{ site.navbar-text-col }};
+  color: $navbar-text-col;
 }
 
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus ,
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
-  color: {{ site.hover-col }};
+  color: $hover-col;
 }
 
 .navbar-custom .navbar-brand-logo {
@@ -153,7 +145,7 @@ img {
   height: 40px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .navbar-custom {
     padding: 20px 0;
     -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
@@ -191,7 +183,7 @@ img {
   display: none;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .navbar-custom .avatar-container {
     width: 100px;
     margin-top: -50px;
@@ -225,12 +217,12 @@ img {
   display: block;
   padding: 10px;
   padding-left: 30px;
-  background-color: {{ site.navbar-children-col }};
+  background-color: $navbar-children-col;
   text-decoration: none !important;
   border-width: 0 1px 1px 1px;
   font-weight: normal;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: $screen-xs-max) {
   .navbar-custom .nav .navlinks-container.show-children {
     background: rgba(0, 0, 0, 0.2);
   }
@@ -238,7 +230,7 @@ img {
     display: block;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .navbar-custom .nav .navlinks-container {
     text-align: center;
   }
@@ -253,7 +245,7 @@ img {
   }
   .navbar-custom .nav .navlinks-container .navlinks-children a {
     padding-left: 10px;
-    border: 1px solid #eaeaea;
+    border: 1px solid scale-color($color: $navbar-col, $lightness: -5%);
     border-width: 0 1px 1px;
   }
 }
@@ -262,22 +254,21 @@ img {
 
 footer {
   padding: 30px 0;
-  border-top: 1px #EAEAEA solid;
+  border-top: 1px solid scale-color($color: $footer-col, $lightness: -5%);
   margin-top: 50px;
   font-size: 14px;
-  background-color: {{ site.footer-col }};
-  {% if site.footer-img %}
-  background-image: url({{ site.footer-img | relative_url }});
-  background-attachment: fixed;
-  {% endif %}
+  background-color: $footer-col;
+  @if global-variable-exists(footer-img) {
+	  @include bgimage($footer-img);
+  }
 }
 
 footer p.text-muted {
-  color: {{ site.footer-text-col }};
+  color: $footer-text-col;
 }
 
 footer a {
-  color: {{site.footer-link-col}};
+  color: $footer-link-col;
 }
 
 footer .list-inline {
@@ -285,7 +276,7 @@ footer .list-inline {
   padding: 0;
 }
 footer .copyright {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   text-align: center;
   margin-bottom: 0;
 }
@@ -294,7 +285,7 @@ footer .theme-by {
   margin: 10px 0 0;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   footer {
     padding: 50px 0;
   }
@@ -313,7 +304,7 @@ footer .theme-by {
   border-bottom: 1px solid #eee;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .post-preview {
     padding: 35px 0;
   }
@@ -331,7 +322,7 @@ footer .theme-by {
 .post-preview a:focus,
 .post-preview a:hover {
   text-decoration: none;
-  color: {{ site.hover-col }};
+  color: $hover-col;
 }
 
 .post-preview .post-title {
@@ -351,7 +342,7 @@ footer .theme-by {
   margin: 0 0 10px;
 }
 .post-preview .post-entry {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
 }
 .post-entry-container {
   display: inline-block;
@@ -379,7 +370,7 @@ footer .theme-by {
   font-weight: 800;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .post-preview .post-title {
     font-size: 36px;
   }
@@ -388,21 +379,21 @@ footer .theme-by {
 /* --- Tags --- */
 
 .blog-tags {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   color: #999;
   font-size: 15px;
   margin-bottom: 30px;
 }
 
 .blog-tags a {
-  color: {{ site.link-col }};
+  color: $link-col;
   text-decoration: none;
   padding: 0px 5px;
 }
 
 .blog-tags a:hover {
   border-radius: 2px;
-  color: {{ site.hover-col }};
+  color: $hover-col;
   background-color: #EEE;
 }
 
@@ -411,7 +402,7 @@ footer .theme-by {
   margin-bottom: 0;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .post-preview .blog-tags {
     margin-top: 10px;
   }
@@ -481,7 +472,7 @@ footer .theme-by {
   font-size: 27px;
   line-height: 1.1;
   display: block;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   font-weight: 300;
   margin: 10px 0 0;
 }
@@ -506,12 +497,12 @@ footer .theme-by {
   padding: 5px 10px;
   font-size: 11px;
   color: #EEE;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   right: 0;
   bottom: 0;
   display: none;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .intro-header {
     margin-top: 130px;
   }
@@ -590,7 +581,7 @@ footer .theme-by {
 /* --- Pager --- */
 
 .pager li a {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 800;
@@ -600,7 +591,7 @@ footer .theme-by {
   border-radius: 0;
   color: #404040;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .pager li a {
     padding: 15px 25px;
   }
@@ -608,8 +599,8 @@ footer .theme-by {
 .pager li a:hover,
 .pager li a:focus {
   color: #FFF;
-  border: 1px solid {{ site.hover-col }};
-  background-color: {{ site.hover-col }};
+  border: 1px solid $hover-col;
+  background-color: $hover-col;
 }
 
 .pager {
@@ -620,7 +611,7 @@ footer .theme-by {
   margin-top: 0;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
   .pager.blog-pager  {
     margin-top: 10px;
   }
@@ -728,7 +719,7 @@ td.gutter {
 }
 
 #full-tags-list {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
 }
 
 #full-tags-list .tag-entry {
