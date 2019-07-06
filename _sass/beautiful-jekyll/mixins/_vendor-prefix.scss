@@ -1,0 +1,8 @@
+// Add vendor prefix to CSS properties
+
+@mixin vendor-prefix($prop, $val, $vendors...) {
+	#{$prop}: #{$val};
+	@each $v in $vendors {
+		-#{$v}-#{$prop}: #{$val};
+	}
+}

@@ -1,0 +1,45 @@
+/* --- Code blocks --- */
+
+// repeating-linear-gradient() doesn't accept unitless height
+$pre-line-height: 1.5em;
+
+pre {
+  font-size: 16px;
+  line-height: $pre-line-height;
+}
+.highlight {
+  & pre {
+    border: none;
+    margin: 0;
+    background: none;
+    &.lineno {
+      border-radius: 0;
+      border-right: 2px solid $text-col;
+      color: rgba(#000,0.3);
+    }
+  }
+  & > pre {
+    // repeating-linear-gradient() doesn't generate stripping near bottom edge
+    // IE can't grok 2-color-stop form parameters
+    background-image: linear-gradient(
+      rgba(#000,6%),
+      rgba(#000,6%) $pre-line-height,
+      rgba(#000,3%) $pre-line-height,
+      rgba(#000,3%) ($pre-line-height * 2));
+    background-position-y: (($line-height-computed - 1) / 2);
+    background-size: auto ($pre-line-height * 2);
+    border: 1px solid rgba(#000,0.1);
+    border-left: 5px solid $text-col;
+    &:not([class~="highlight"]) { // code block with line number
+      padding: 0;
+    }
+  }
+}
+
+// Make line numbers unselectable, exclude them from copy and paste
+.lineno {
+  @include vendor-prefix("user-select", "none", "webkit", "moz", "ms");
+  &::selection, &::-moz-selection {
+    background: none;
+  }
+}
