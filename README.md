@@ -5,15 +5,17 @@ forward, since Dean Attali desires a more stable theme as it has a large
 user base. Intended and finished changes include:
 
 - [x] Remote theme support
-- [x] [Require.JS](https://requirejs.org/) integration
+- Speed up page loading with:
+  - [x] [Require.JS](https://requirejs.org/) integration
+  - [ ] [loadCSS](https://github.com/filamentgroup/loadCSS/) integration
 - [x] URL settings follow Jekyll guideline (available upstream)
 - [x] Font Awesome updated to 5.9.0 webfont version
-    - Not using SVG due to [problem in IE for CSS pseudo element][1]
+    - Not using SVG due to [problem in IE for CSS pseudo element][10]
 - [x] Bootstrap and jQuery updated to latest minor release
 - [ ] Use Bootstrap 4.x with SASS integration
 - [ ] *(under progress)* More SASS refactoring, currently theme only uses raw CSS
 
-[1]: https://github.com/FortAwesome/Font-Awesome/issues/12994
+[10]: https://github.com/FortAwesome/Font-Awesome/issues/12994
 
 Hopefully some of the modifications can be merged upstream in the future.
 For any issues not mentioned here, please visit upstream theme
@@ -33,13 +35,13 @@ upstream theme.
 The intention of change is to keep upstream main CSS / script body intact, while modularizing user changes as much as possible. It would be relatively easier to sync from upstream change without messing up with one's own customizations.
 
 ## Remote theme support
-Please check out [my example repository][2] on how to use this theme as
+Please check out [my example repository][20] on how to use this theme as
 remote theme. Only limited files need to be copied, mainly config and
 some top level files. No template and no asset are needed, unless you
 want to override them. Some additional files are needed for Staticman
 support though. Anyway, remember:
 
-[2]: https://github.com/abelcheung/site-test/
+[20]: https://github.com/abelcheung/site-test/
 
 > ***No forking!***
 
@@ -50,18 +52,41 @@ remote theme per se.
 
 With require.js, it is possible to load all required javascript libraries
 asynchronously with dependencies fulfilled. Major part of relevant config
-is available in [`assets/js/config.coffee`](assets/js/config.coffee).
-Note that even jQuery UI is listed, it is not utilized in any part of
-theme. Require.JS is intelligent enough to not load jQuery UI at all if
-it is determined to be unused. The entry is placed there so that one can
-use jQuery UI in their own additional scripts in future without modifying
-config.
+is available under `requirejs` variable in `_config.yml`. There are 2
+subkeys under `requirejs`:
 
-Besides one can write additional script for customization, without touching
+| subkey | explanation |
+| --- | --- |
+| `mods` | Script module name, usually the base script file name without `.js` extension |
+| `libs` | Dependencies used by script modules |
+
+Each library dependency in turn contains 3 properties: `name`, `href` and
+`sri` (optional, see [this mozilla web doc][30] for explanation). Here is part
+of default config:
+
+[30]: https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
+
+```yaml
+requirejs:
+  mods:
+    - beautiful-jekyll
+  libs:
+    - name: jquery
+      href: 'https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min'
+      sri: 'sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ'
+    - name: bootstrap
+      href: 'https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min'
+      sri: 'sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd'
+```
+
+One can write additional script for customization, without touching
 the upstream theme script. This customization can be as granular as
-per-layout or even per-page level. All of them uses `requirejs` key
-in config, and config support for all manual javascript loading (`js`,
-`ext-js` etc) are removed.
+per-layout or even per-page level. All of them uses `requirejs.mods`
+variable just like how it is used in global config. In exchange,
+all manual javascript loading facilities (`js`, `ext-js` etc) are dropped.
+
+Following examples assume you have added your AMD style javascript
+as `assets/js/myscript.js`:
 
 <table>
 <tr>
@@ -74,8 +99,9 @@ Add your script beside the main one in `_config.yml`, for example:
 
 ```yaml
 requirejs:
-  - beautiful-jekyll
-  - myscript
+  mods:
+    - beautiful-jekyll
+    - myscript
 ```
 </td>
 <td valign="top" markdown="1">
@@ -84,23 +110,29 @@ Define relevant script inside front matter of layout or post file:
 ```yaml
 ---
 requirejs:
-  - myscript
+  mods:
+    - myscript
 ---
-(file content)
+(post content or layout content)
 ```
 </td>
 </table>
 
-Notice the omission of `.js` file extension in above config fragments.
-All scripts are assumed to be placed in `assets/js` subfolder (see
-`baseUrl` setting in `config.coffee`); please either change this
-setting or prepend path to script name accordingly if you place your
-scripts in other locations.
+All scripts are assumed to be placed under `assets/js/` subfolder
+(see `_includes/head-scripts.html`); for overriding single script,
+it is possible to use relative path when specifying script module
+name like:
+
+```yaml
+requirejs:
+  mods:
+    - ../myscript
+```
 
 ### Writing javascript in AMD style
 
 Although RequireJS can load traditional scripts and specify dependencies
-inside `config.coffee`, it is recommended to write your module in
+manually, it is recommended to write your module in
 *Asynchronous Module Definition* style. TL;DR:
 
 ```js
@@ -111,22 +143,34 @@ define (['jquery'], function($){
 
 In the example above, the first argument (module ID) is omitted.
 It suffices to write your script as an anonymous module. Second
-argument is array of dependencies your script would use.
-Finally it's *factory function*, with dependent modules as arguments.
+argument is array of dependencies your script would use. Finally
+argument is *factory function*, with dependent modules as arguments.
 
 Merit for using AMD and usage details are out of scope of this document;
-[RequireJS website][3] and [AMD JS Group][4] already provide nice roundup
+[RequireJS website][31] and [AMD JS Group][32] already provide nice roundup
 about everything related to AMD.
 
-[3]: https://requirejs.org/docs/whyamd.html
-[4]: https://github.com/amdjs/amdjs-api/blob/master/AMD.md
+**Note:** for traditional scripts one has no control over (or loaded from
+CDN), there is [shim config under requirejs][33]. For example, Bootstrap
+3.x jQuery modules have no support for AMD (only supported for 4.x), thus
+this fragment is used inside `_includes/head-scripts.html`:
+
+```js
+shim: {
+  bootstrap: { deps: ['jquery'] }
+}
+```
+
+[31]: https://requirejs.org/docs/whyamd.html
+[32]: https://github.com/amdjs/amdjs-api/blob/master/AMD.md
+[33]: https://requirejs.org/docs/api.html#config-shim
 
 ## URL setting change
 
-This is already available upstream; please [visit upstream README][5]
+This is already available upstream; please [visit upstream README][6]
 for a summary of relevant changes.
 
-[5]: https://github.com/daattali/beautiful-jekyll#user-content-my-project-page-appear-to-be-broken-after-a-recent-update
+[6]: https://github.com/daattali/beautiful-jekyll#user-content-my-project-page-appear-to-be-broken-after-a-recent-update
 
 ## Development using docker-compose
 

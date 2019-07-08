@@ -1,7 +1,7 @@
 // vim: set sw=2 ts=2 sts=2 et :
 // Dean Attali / Beautiful Jekyll 2016
 
-define (['jquery','bootstrap'], function($){
+define (['jquery','bootstrap','domReady!'], function($){
 
 var main = {
 
