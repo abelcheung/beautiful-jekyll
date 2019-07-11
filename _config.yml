@@ -40,6 +40,9 @@ avatar: "/assets/img/avatar-icon.png"
 
 # --- Background colour/image options --- #
 # All style config are moved to _sass/beautiful-jekyll/_variables.scss
+# User style customization goes to _sass/_customize.scss
+css:
+  main: "/assets/css/main.css"
 
 # --- Footer options --- #
 
