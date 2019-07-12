@@ -230,6 +230,7 @@ prose:
 # depends on it.
 requirejs:
   mods:
+    - cssrelpreload
     - beautiful-jekyll
   libs:
     - name: jquery
@@ -244,6 +245,9 @@ requirejs:
     - name: domReady
       href: 'https://cdnjs.cloudflare.com/ajax/libs/require-domReady/2.0.1/domReady.min'
       sri : 'sha384-Ink8nCp9Nf+OT+aAm158lxh0C6NiqsnYLSKqJ5SpOBGrNJGI+PiliRbiYh3QEgo5'
+    - name: cssrelpreload
+      href: 'https://cdn.jsdelivr.net/npm/fg-loadcss@2.1.0/dist/cssrelpreload.min'
+      sri : 'sha384-sQ0Z7imIAcp1/Z47hsy2G3MgW9DiAJJnAyLej+zjg0mJcwapL9pEzZU0DU+QYXq2'
 
 plugins:
   - jekyll-remote-theme

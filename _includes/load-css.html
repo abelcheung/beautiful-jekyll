@@ -1,6 +1,11 @@
 {% comment %}
 Unified CSS settings so that no distinguishment between internal / external
 script is needed.
+
+Make use of loadCSS polyfill to load all styles asynchronously.
+
+If preload and SRI are used together, it is essential to add integrity to link element
+https://github.com/w3c/preload/issues/127
 {% endcomment %}
 {%- assign all_css = layout.common-css -%}
 {%- if layout.css -%}{%- assign all_css = all_css | concat: layout.css -%}{%- endif -%}
@@ -10,7 +15,7 @@ script is needed.
 {%- assign all_css = all_css | push: '/assets/css/staticman.css' -%}
 {%- endif -%}
 
-{%- assign all_css = all_css | push: site.css.main | compact | uniq -%}
+{%- assign all_css = all_css | compact | uniq -%}
 
 {%- for css in all_css -%}
 
@@ -31,6 +36,14 @@ script is needed.
   {%- else -%}
     href="{{ href | relative_url }}"
   {%- endif -%}
-  {%- endcapture %}
+  {%- endcapture -%}
+
+  {% if prop.critical %}{% comment %} No preload for important CSS {% endcomment %}
   <link rel="stylesheet" {{ attrs }}>
-{% endfor -%}
+  {% else %}
+  <link rel="preload" {{ attrs }} as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" {{ attrs }}></noscript>
+  {% endif %}
+
+{%- endfor -%}
+  <link rel="stylesheet" href="{{ site.css.main | relative_url }}">
