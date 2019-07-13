@@ -7,13 +7,14 @@ user base. Intended and finished changes include:
 - [x] Remote theme support
 - Speed up page loading with:
   - [x] [Require.JS](https://requirejs.org/) integration
-  - [ ] [loadCSS](https://github.com/filamentgroup/loadCSS/) integration
+  - [x] [loadCSS][40] integration
 - [x] URL settings follow Jekyll guideline (available upstream)
-- [x] Font Awesome updated to 5.9.0 webfont version
+- [x] Font Awesome updated to 5.8.2 webfont version
     - Not using SVG due to [problem in IE for CSS pseudo element][10]
 - [x] Bootstrap and jQuery updated to latest minor release
 - [ ] Use Bootstrap 4.x with SASS integration
 - [ ] *(under progress)* More SASS refactoring, currently theme only uses raw CSS
+- [x] Layout reorganization
 
 [10]: https://github.com/FortAwesome/Font-Awesome/issues/12994
 
@@ -165,19 +166,58 @@ shim: {
 [32]: https://github.com/amdjs/amdjs-api/blob/master/AMD.md
 [33]: https://requirejs.org/docs/api.html#config-shim
 
+## loadCSS integration
+
+[loadCSS][40] is chosen to attempt loading non-critical style sheets
+asynchronously, like what `require.js` is doing for javascripts.
+There are not much user related changes, except that an extra boolean key
+`critical` is added to denote a style sheet being important, and must be loaded
+in a blocking manner. Here is the default config demonstrating its use
+in Bootstrap style sheet:
+
+```yaml
+common-css:
+  - "https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css":
+      sri: "sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      critical: true
+```
+
+[40]: https://github.com/filamentgroup/loadCSS/
+
 ## URL setting change
 
-This is already available upstream; please [visit upstream README][6]
+This is already available upstream; please [visit upstream README][50]
 for a summary of relevant changes.
 
-[6]: https://github.com/daattali/beautiful-jekyll#user-content-my-project-page-appear-to-be-broken-after-a-recent-update
+[50]: https://github.com/daattali/beautiful-jekyll#user-content-my-project-page-appear-to-be-broken-after-a-recent-update
+
+## Layout reorganization
+
+Layouts are a bit different from upsteram theme:
+
+| Upstream | This fork |
+| --- | --- |
+| `base` | `default` |
+| `default` | `minimal` |
+| `minimal` | (removed) |
+
+There are 2 reasons:
+
+- Upstream `minimal` theme seems to be abandoned and completely out of place
+  when compared with any site theme template; while its `default` layout
+  does not contain any bells and whistles yet included enough elements to
+  be considered as part of site.
+- Another reason is, `default.html` is [the convention adopted by Jekyll][60] as
+  the base template file name.
+
+[60]: https://jekyllrb.com/docs/layouts/
 
 ## Development using docker-compose
 
-This section has [its own wiki page][6]. The advantage for using Docker
+This section has [its own wiki page][70]. The advantage for using Docker
 for local development is that, one don't need to install Ruby, Jekyll
 and all sorts of stuff in order to preview and test your Github pages.
 Besides the repo can be freed from artifacts resulting from local
 software management and dependencies.
 
-[6]: https://github.com/abelcheung/beautiful-jekyll/wiki/Development-with-docker-compose
+[70]: https://github.com/abelcheung/beautiful-jekyll/wiki/Development-with-docker-compose
