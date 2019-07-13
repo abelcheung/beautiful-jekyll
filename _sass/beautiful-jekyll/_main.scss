@@ -40,24 +40,6 @@ hr.small {
   border-radius: 3px;
 }
 
-.main-content {
-  padding-top: 80px;
-}
-@media only screen and (min-width: $screen-sm-min) {
-  .main-content {
-    padding-top: 130px;
-  }
-}
-
-.main-explain-area {
-  font-family: $font-family-sans-serif;
-  padding: 15px inherit;
-}
-
-.hideme {
-  display: none;
-}
-
 ::-moz-selection {
   color: white;
   text-shadow: none;
@@ -340,16 +322,6 @@ footer .theme-by {
   font-size: 18px;
   font-style: italic;
   margin: 0 0 10px;
-}
-.post-preview .post-entry {
-  font-family: $font-family-sans-serif;
-}
-.post-entry-container {
-  display: inline-block;
-  width: 100%;
-}
-.post-entry {
-  width: 100%;
 }
 .post-image {
   float: right;
