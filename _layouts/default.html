@@ -2,8 +2,16 @@
 layout: base
 ---
 
-<div class="intro-header"></div>
+{% include header.html type="page" %}
 
-<div role="main" class="container">
-  {{ content }}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="main-content">
+        {{ content }}
+      </article>
+
+    </div>
+  </div>
 </div>
