@@ -1,6 +1,4 @@
-<!-- TODO this file has become a mess, refactor it -->
-
-{% if page.bigimg or page.title %}
+{% if page.bigimg or page.title or page.use-site-title %}
 
 {% if page.bigimg %}
   <div id="header-big-imgs" data-num-img={% if page.bigimg.first %}{{ page.bigimg.size }}{% else %}1{% endif %}
@@ -25,25 +23,29 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="{{ include.type }}-heading">
-          <h1>{% if page.title %}{{ page.title }}{% else %}<br/>{% endif %}</h1>
-		  {% if page.subtitle %}
-		    {% if include.type == "page" %}
-            <hr class="small">
-            <span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
-			{% else %}
-			<h2 class="{{ include.type }}-subheading">{{ page.subtitle }}</h2>
-			{% endif %}
-		  {% endif %}
-		  
-		  {%- if include.type == "post" -%}
-		  <div class="post-meta">
-		  Posted on {{ page.date | date: "%B %-d, %Y" }}
-		  {%- if page.last_modified_at -%}
-		  ; last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
-		  {%- endif -%}
-		  </div>
-		  {%- endif %}
-        </div>
+
+	{%- if page.use-site-title -%}
+	  <h1>{{ site.title }}</h1>
+	  <hr class="small">
+	  <span class="{{ include.type }}-subheading">{{ site.description }}</span>
+	{%- else -%}
+	  <h1>{{ page.title }}</h1>
+	  {%- if page.subtitle -%}
+	  <hr class="small">
+	  <span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
+	  {%- endif -%}
+	{%- endif -%}
+	
+	{%- if include.type == "post" -%}
+	<div class="post-meta">
+	Posted on {{ page.date | date: "%B %-d, %Y" }}
+	{%- if page.last_modified_at -%}
+	<br />Last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
+	{%- endif -%}
+	</div>
+	{%- endif -%}
+
+        </div><!-- {{include.type}}-heading -->
       </div>
     </div>
   </div>
@@ -55,24 +57,28 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="{{ include.type }}-heading">
-          <h1>{% if page.title %}{{ page.title }}{% else %}<br/>{% endif %}</h1>
-		  {% if page.subtitle %}
-		    {% if include.type == "page" %}
-            <hr class="small">
-            <span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
-			{% else %}
-			<h2 class="{{ include.type }}-subheading">{{ page.subtitle }}</h2>
-			{% endif %}
-		  {% endif %}
-		  
-		  {%- if include.type == "post" -%}
-		  <div class="post-meta">
-		  Posted on {{ page.date | date: "%B %-d, %Y" }}
-		  {%- if page.last_modified_at -%}
-		  ; last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
-		  {%- endif -%}
-		  </div>
-		  {%- endif %}
+
+	{%- if page.use-site-title %}
+	  <h1>{{ site.title }}</h1>
+	  <hr class="small">
+	  <span class="{{ include.type }}-subheading">{{ site.description }}</span>
+	{%- else %}
+	  <h1>{{ page.title }}</h1>
+	  {%- if page.subtitle -%}
+	  <hr class="small">
+	  <span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
+	  {%- endif -%}
+	{%- endif -%}
+	
+	{%- if include.type == "post" -%}
+	<div class="post-meta">
+	Posted on {{ page.date | date: "%B %-d, %Y" }}
+	{%- if page.last_modified_at -%}
+	<br />Last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
+	{%- endif -%}
+	</div>
+	{%- endif -%}
+
         </div>
       </div>
     </div>

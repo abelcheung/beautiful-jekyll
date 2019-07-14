@@ -9,18 +9,18 @@ common-css:
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-  {% include head.html %}
+<html lang="en" prefix="og: http://ogp.me/ns#">
+{% include head.html %}
 
-  <body>
+<body>
 
-    {% include gtm_body.html %}
+  {% include trackers.html place="body" %}
 
-    {% include nav.html %}
+  {% include nav.html %}
 
-    {{ content }}
+  {{ content }}
 
-    {% include footer.html %}
+  {% include footer.html %}
 
-  </body>
+</body>
 </html>

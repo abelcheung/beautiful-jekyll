@@ -1,0 +1,57 @@
+{%- capture site_title -%}
+{{ site.title }} • {{ site.description }}
+{%- endcapture -%}
+
+{%- if page.title.size > 0 -%}
+	{%- capture page_title -%}
+		{{ page.title }} • {{ site.title }}
+	{%- endcapture -%}
+	{%- capture page_desc -%}
+		{%- if page.subtitle -%}{{- page.subtitle -}}
+		{%- else             -%}{{- page.excerpt | markdownify | strip_html | strip | xml_escape -}}
+		{%- endif -%}
+	{%- endcapture -%}
+{%- endif -%}
+
+{%- if page.share-img -%}
+	{%- assign img = page.share-img | absolute_url -%}
+{%- elsif site.avatar -%}
+	{%- assign img = site.avatar | absolute_url -%}
+{%- else -%}
+	{%- assign img = nil -%}
+{%- endif -%}
+
+{%- assign canonical_url = page.url | absolute_url | strip_index -%}
+
+<title>{{ page_title | default: site_title }}</title>
+{%- if site.author.name.size > 0 %}
+<meta name="author" content="{{ site.author.name }}">
+{%- endif %}
+<meta name="description" content="{{ page_desc | default: site.description }}">
+<link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="{{ '/feed.xml' | absolute_url }}">
+<link rel="canonical" href="{{ canonical_url }}">
+
+{%- comment %}
+Meta tags shouldn't have needed to be self closing unless in XHTML.
+But seems Facebook doesn't grok it well.
+{% endcomment %}
+
+<!-- Opengraph (Facebook, Linkedin etc) -->
+{% if site.fb_app_id.size > 0 %}
+<meta property="fb:app_id" content="{{ site.fb_app_id }}" />
+{% endif -%}
+
+<meta property="og:type" content="{% if page.title %}article{% else %}website{% endif %}" />
+<meta property="og:title" content="{{ page_title | default: site_title }}" />
+<meta property="og:description" content="{{ page_desc | default: site.description }}" />
+<meta property="og:url" content="{{ canonical_url }}" />
+{%- if img %}
+<meta property="og:image" content="{{ img }}" />
+{%- endif %}
+
+<!-- Twitter Card specific -->
+<meta name="twitter:card" content="summary">
+{%- if site.author.twitter %}
+<meta name="twitter:site" content="@{{ site.author.twitter | remove: '@' }}">
+<meta name="twitter:creator" content="@{{ site.author.twitter | remove: '@' }}">
+{% endif -%}
