@@ -1,0 +1,19 @@
+{%- if site.disqus > 0 %}
+<div class="comments disqus-comments">
+{% include comment/disqus.html %}
+{%- endif %}
+{%- if site.fb_comment_id.size > 0 %}
+<div class="comments fb-comments">
+{% include comment/fb-comment.html %}
+</div>
+{%- endif %}
+{%- if site.staticman.repository and site.staticman.branch %}
+<div class="comments staticman-comments">
+{% include comment/staticman-comments.html %}
+</div>
+{%- endif %}
+{%- if site.just-comments.size > 0 %}
+<div class="comments just-comments">
+{% include just_comments.html %}
+</div>
+{% -endif %}
