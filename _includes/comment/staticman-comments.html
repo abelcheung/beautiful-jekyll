@@ -1,5 +1,4 @@
-{% if site.staticman.repository and site.staticman.branch %}
-  <div class="page__comments">
+  <div class="comments-container page__comments">
     <!-- Start static comments -->
     <div class="js-comments">
       {% if site.data.comments[page.slug] %}
@@ -11,13 +10,13 @@
           {% assign url = comment[1].url %}
           {% assign date = comment[1].date %}
           {% assign message = comment[1].message %}
-          {% include staticman-comment.html index=forloop.index email=email name=name url=url date=date message=message %}
+          {% include_relative staticman-comment.html index=forloop.index email=email name=name url=url date=date message=message %}
         {% endfor %}
       {% endif %}
     </div>
     <!-- End static comments -->
     <!-- Start new comment form -->
-    <div class="page__comments-form">
+    <div class="page__comments-form hidden">
       <h3 class="page__comments-title">{{ site.data.ui-text[site.locale].comments_label | default: "Leave a Comment" }}</h3>
       <p class="small">{{ site.data.ui-text[site.locale].comment_form_info | default: "Your email address will not be published. Required fields are marked" }} <span class="required">*</span></p>
       <form id="new_comment" class="page__comments-form js-form form" method="post" action="{{ site.staticman.endpoint | default: 'https://staticman3.herokuapp.com/v3/entry/github/' }}{{ site.staticman.repository }}/{{ site.staticman.branch }}/comments">
@@ -52,21 +51,21 @@
         </p>
         <!-- End comment form alert messaging -->
         {% if site.staticman.reCaptcha.siteKey %}
-          <div class="form-group">
+          <div class="form-group pull-right">
             <div class="g-recaptcha" data-sitekey="{{ site.staticman.reCaptcha.siteKey }}"></div>
           </div>
         {% endif %}
         <div class="form-group">
-          <button type="submit" id="comment-form-submit" tabindex="5" class="btn btn--primary btn--large">{{ site.data.ui-text[site.locale].comment_btn_submit | default: "Submit Comment" }}</button>
+          <button type="submit" id="comment-form-submit" tabindex="5" class="btn btn-primary btn-large">{{ site.data.ui-text[site.locale].comment_btn_submit | default: "Submit Comment" }}</button>
         </div>
       </form>
     </div>
     <!-- End new comment form -->
+    <noscript><div class="alert alert-warning"><strong>Please enable JavaScript</strong> to post comments powered by Staticman.</div></noscript>
     <!-- Load reCaptcha if site key is set -->
     {% if site.staticman.reCaptcha.siteKey %}
       <script async src="https://www.google.com/recaptcha/api.js"></script>
     {% endif %}
   </div>
   <!-- Load script to handle comment form submission -->
-  {% include staticman-script.html %}
-{% endif %}
+  {% include_relative staticman-script.html %}

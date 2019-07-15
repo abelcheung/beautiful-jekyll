@@ -1,4 +1,10 @@
-{%- if site.just-comments -%}
-<div class="just-comments" data-apikey="{{site.just-comments}}"></div>
+<!-- Start JustComments -->
+<div class="comments-container">
+{% comment %}
+Follow this link on enabling reCAPTCHA in JustComments:
+https://just-comments.com/docs.html#recaptcha
+{% endcomment %}
+<div class="just-comments" data-recaptcha="true" data-apikey="{{site.just-comments}}"></div>
 <script async src="https://just-comments.com/w.js"></script>
-{%- endif -%}
+<noscript><div class="alert alert-warning"><strong>Please enable JavaScript</strong> to view and post comments powered by JustComments.</div></noscript>
+</div>
