@@ -565,20 +565,6 @@ footer .theme-by {
   background-color: $hover-col;
 }
 
-.pager {
-  margin: 10px 0 0;
-}
-
-.pager.blog-pager {
-  margin-top: 0;
-}
-
-@media only screen and (min-width: $screen-sm-min) {
-  .pager.blog-pager  {
-    margin-top: 10px;
-  }
-}
-
 /* --- Social media sharing section --- */
 
 #social-share-section {
