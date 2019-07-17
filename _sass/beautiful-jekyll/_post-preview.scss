@@ -1,0 +1,68 @@
+/* --- Post preview --- */
+
+.post-preview
+{
+	padding: 20px 0;
+	@media only screen and (min-width: $screen-sm-min) {
+		padding: 35px 0;
+	}
+
+	&:not(:last-child) {
+		border-bottom: 3px solid rgba(0, 0, 0, 0.05);
+	}
+
+	a {
+		text-decoration: none;
+		:focus, :hover {
+			color: $hover-col;
+		}
+	}
+
+	// Maybe move post-title and post-subtitle out of post-preview
+	// They are never used anywhere else
+	.post-title {
+		color: $text-col;
+		font-size: 30px;
+		margin-top: 0;
+		@media only screen and (min-width: $screen-sm-min) {
+			font-size: 36px;
+		}
+	}
+
+	.post-subtitle {
+		margin: 0;
+		font-weight: 300;
+		margin-bottom: 10px;
+	}
+}
+
+.post-image
+{
+	float: right;
+	height: 192px;
+	width: 192px;
+	a > img {
+		border-radius: 96px;
+		@media not all and (hover: none) {
+			filter: blur(3px);
+		}
+	}
+	a:hover > img, a:focus > img {
+		filter: unset;
+	}
+
+	@media only screen and (max-width: $screen-xs-min - 1) {
+		float: none;
+		height: 100px;
+		width: 100px;
+		a > img {
+			border-radius: 50px;
+		}
+		margin: 0 auto 10px;
+	}
+}
+
+.post-read-more {
+	font-weight: bold;
+	font-size: 85%;
+}
