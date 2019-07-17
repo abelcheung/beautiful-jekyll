@@ -1,0 +1,5 @@
+@mixin font-weight($weight) {
+	@if ($weight != 400) and ($weight != normal) {
+		font-weight: #{$weight};
+	}
+}

@@ -1,10 +1,9 @@
 /* --- General --- */
 
 body {
-  font-family: $font-family-serif;
+  font-family: $font-family-ui;
   font-size: 18px;
   color: $text-col;
-  position: relative;
   background-color: $page-col;
   @if global-variable-exists(page-img) {
 	  @include bgimage($page-img);
@@ -15,8 +14,7 @@ p {
   margin: 30px 0;
 }
 h1,h2,h3,h4,h5,h6 {
-  font-family: $font-family-sans-serif;
-  font-weight: 800;
+  @include font-weight($font-weight-ui);
 }
 a {
   color: $link-col;
@@ -68,12 +66,17 @@ img {
   margin-top: -25px;
 }
 
+.main-content, .post-meta,
+.post-preview .post-entry {
+  font-family: $font-family-content;
+  @include font-weight($font-weight-content);
+}
+
 /* --- Navbar --- */
 
 .navbar-custom {
   background-color: $navbar-col;
   border-bottom: 1px solid scale-color($color: $navbar-col, $lightness: -5%);
-  font-family: $font-family-sans-serif;
   @if global-variable-exists(navbar-img) {
 	  @include bgimage($navbar-img);
   }
@@ -81,13 +84,12 @@ img {
 
 .navbar-custom .nav li a {
   text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 14px;
 }
 
 .navbar-custom .navbar-brand,
 .navbar-custom .nav li a {
-  font-weight: 800;
+  font-weight: $font-weight-ui;
   color: $navbar-text-col;
 }
 
@@ -248,7 +250,6 @@ footer .list-inline {
   padding: 0;
 }
 footer .copyright {
-  font-family: $font-family-sans-serif;
   text-align: center;
   margin-bottom: 0;
 }
@@ -272,7 +273,6 @@ footer .theme-by {
 /* --- Tags --- */
 
 .blog-tags {
-  font-family: $font-family-sans-serif;
   color: #999;
   font-size: 15px;
   margin-bottom: 30px;
@@ -352,7 +352,6 @@ footer .theme-by {
   font-size: 27px;
   line-height: 1.1;
   display: block;
-  font-family: $font-family-sans-serif;
   font-weight: 300;
   margin: 10px 0 0;
 }
@@ -377,7 +376,6 @@ footer .theme-by {
   padding: 5px 10px;
   font-size: 11px;
   color: #EEE;
-  font-family: $font-family-sans-serif;
   right: 0;
   bottom: 0;
   display: none;
@@ -458,13 +456,18 @@ footer .theme-by {
   }
 }
 
+.post-meta {
+	color: #808080;
+	font-style: italic;
+	margin-bottom: 30px;
+}
+
 /* --- Pager --- */
 
 .pager li a {
-  font-family: $font-family-sans-serif;
   text-transform: uppercase;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: $font-weight-ui;
   letter-spacing: 1px;
   padding: 10px 5px;
   background-color: #FFF;
@@ -543,10 +546,6 @@ footer .theme-by {
 
 .tag-btn {
   margin: 5px;
-}
-
-#full-tags-list {
-  font-family: $font-family-sans-serif;
 }
 
 #full-tags-list .tag-entry {
