@@ -25,12 +25,16 @@
 
 #tag-list {
 	list-style-type: none;
-	padding-inline-start: 0;
+	-webkit-padding-start: 0;
+	        padding-inline-start: 0;
+	display: -webkit-box;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	        justify-content: space-between;
 	& > li {
-		flex: 0 0 none;
+		-webkit-box-flex: 0;
+		        flex: 0 0 none;
 	}
 }
 

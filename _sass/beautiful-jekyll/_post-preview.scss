@@ -44,11 +44,11 @@
 	a > img {
 		border-radius: 96px;
 		@media not all and (hover: none) {
-			filter: blur(3px);
+			@include vendor-prefix("filter", "blur(3px)", "webkit");
 		}
 	}
 	a:hover > img, a:focus > img {
-		filter: unset;
+		@include vendor-prefix("filter", "unset", "webkit");
 	}
 
 	@media only screen and (max-width: $screen-xs-min - 1) {
