@@ -61,11 +61,6 @@ img {
   max-width: 100%;
 }
 
-.linked-section {
-  padding-top: 60px;
-  margin-top: -25px;
-}
-
 .main-content, .post-meta,
 .post-preview .post-entry {
   font-family: $font-family-content;
@@ -540,24 +535,4 @@ footer .theme-by {
 
 .navbar-default button.navbar-toggle[aria-expanded="true"] {
   background-color: rgba(0, 0, 0, 0.2);
-}
-
-/* Tags page */
-
-.tag-btn {
-  margin: 5px;
-}
-
-#full-tags-list .tag-entry {
-  margin: 0 0 15px 25px;
-}
-
-#full-tags-list .tag-entry a {
-  font-size: 20px;
-}
-
-#full-tags-list .tag-entry .entry-date {
-  color: #808080;
-  font-style: italic;
-  font-size: 16px;
 }
