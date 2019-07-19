@@ -6,17 +6,20 @@ user base. Intended and finished changes include:
 
 - [x] Remote theme support
 - Speed up page loading with:
+  - [x] Delegating most JavaScript and CSS loading to fast CDN with best worldwide presence ([jsDelivr][11] and [Cloudflare cdnjs][12])
   - [x] [Require.JS](https://requirejs.org/) integration
   - [x] [loadCSS][40] integration
-- [x] URL settings follow Jekyll guideline (available upstream)
 - [x] Font Awesome updated to 5.8.2 webfont version
     - Not using SVG due to [problem in IE for CSS pseudo element][10]
 - [x] Bootstrap and jQuery updated to latest minor release
+- [x] URL settings follow Jekyll guideline (available upstream)
 - [ ] Use Bootstrap 4.x with SASS integration
 - [ ] *(under progress)* More SASS refactoring, currently theme only uses raw CSS
-- [x] Layout reorganization
+- [x] Layout reorganization and cleanup, some parts rewritten (like tag page)
 
 [10]: https://github.com/FortAwesome/Font-Awesome/issues/12994
+[11]: https://www.jsdelivr.com/
+[12]: https://cdnjs.com/
 
 Hopefully some of the modifications can be merged upstream in the future.
 For any issues not mentioned here, please visit upstream theme
@@ -58,8 +61,8 @@ subkeys under `requirejs`:
 
 | subkey | explanation |
 | --- | --- |
-| `mods` | Script module name, usually the base script file name without `.js` extension |
-| `libs` | Dependencies used by script modules |
+| `mods` | Script module name, usually the base script file name without `.js` extension. |
+| `libs` | Dependencies used by script modules. Only specified in `_config.yml`. |
 
 Each library dependency in turn contains 3 properties: `name`, `href` and
 `sri` (optional, see [this mozilla web doc][30] for explanation). Here is part
@@ -184,6 +187,17 @@ common-css:
 
 [40]: https://github.com/filamentgroup/loadCSS/
 
+## Notes for delegating resource to CDN
+
+Since most JavaScript and CSS libraries have been offloaded externally, it is
+essential that they were not tempered, compromising user experience. The
+`common-css` variable fragment above shows the usage of [Subresource Integrity (SRI)][41],
+which accompanies relevant resource with checksums to guarantee they are not changed
+in any way. Once resource is loaded and checksum doesn't match, browser would refuse
+to use the resource.
+
+[41]: https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
+
 ## URL setting change
 
 This is already available upstream; please [visit upstream README][50]
@@ -211,6 +225,30 @@ There are 2 reasons:
   the base template file name.
 
 [60]: https://jekyllrb.com/docs/layouts/
+
+## Change in site settings
+
+The variables list here only includes those not available from Jekyll or from original
+beautiful-jekyll theme. 
+
+- Jekyll defaults: they are already available from [Jekyll variable documentation page][61].
+  Won't be mentioned here unless there is significant deviation from Jekyll default.
+- Beautiful Jekyll variables: please refer to [YAML parameter section in upstream readme][62]
+
+| Parameter | Scope | Notes |
+| --- | --- | --- |
+| `category` | Page | This is already natively supported in Jekyll but completely unused in beautiful-jekyll. However, this fork has enabled its use when generating permalinks (using `permalink: pretty`). Future work is also planned on making category more useful. |
+| `meta-description`, `meta-title` | Page | Removed. Originally undocumented upstream, they were used during social media sharing. Now social sharing would use original page title and description instead. |
+| `requirejs` | Site, Layout, Page | Added. See require.js support above. |
+| `js`, `ext-js`, `common-js`, `common-ext-js` | Layout, Page | Removed due to require.js integration. |
+| `ext-css`, `common-ext-css` | Layout, Page | Removed. No more distinction between external and internal resource. |
+| `css`, `common-css` | Layout, Page | Structure for subsettings are different from upstream. In this fork the URL itself is used as hash key. See loadCSS section for reference. |
+| `googlefonts` | Layout, Page | Removed. All Google font resource are actually CSS and thus merged into `css` settings above. |
+| `title-separator` | Site | Removed, now using bullet (U+2022) |
+| `link-tags` | Site | Removed, now setting is enforced |
+
+[61]: https://jekyllrb.com/docs/variables/
+[62]: https://github.com/daattali/beautiful-jekyll/#yaml-front-matter-parameters
 
 ## Development using docker-compose
 
