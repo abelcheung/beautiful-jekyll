@@ -1,0 +1,24 @@
+/* --- Footnote --- */
+
+// Make (reverse) footnote link more visible
+.footnote {
+	padding: 0 4px;
+	border-radius: $border-radius-base;
+	border: 1px solid $text-col;
+}
+// Jekyll forces use of \u21A9 as reverse footnote char
+.reversefootnote {
+	visibility: hidden;
+	&::before {
+		visibility: visible;
+		@include fas-solid("\f0a6");
+	}
+}
+.footnotes {
+	font-size: 85%;
+	width: 80%;
+	margin: 30px auto 0;
+	border-top: 4px solid $text-col;
+	p { margin: 1em 0 }
+	ul, ol { padding-inline-start: 1em }
+}
