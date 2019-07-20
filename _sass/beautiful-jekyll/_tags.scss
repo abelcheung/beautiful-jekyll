@@ -3,10 +3,7 @@
 .btn-tag {
 	margin: 5px;
 	&:before {
-		font-family: "Font Awesome 5 Free";
-		font-weight: 900;
-		content: "\f02b";
-		margin-right: 0.3em;
+		@include fas-solid("\f02b", null, 0.3em);
 		vertical-align: middle;
 	}
 	& > .badge {
@@ -45,10 +42,7 @@
 		color: $text-col;
 	}
 	& > h2:before {
-		font-family: "Font Awesome 5 Free";
-		font-weight: 900;
-		content: "\f02b";
-		margin-right: 0.3em;
+		@include fas-solid("\f02b", null, 0.3em);
 		vertical-align: middle;
 	}
 }

@@ -1,0 +1,23 @@
+@mixin fontawesome ($content, $pad-left, $pad-right) {
+	content: "#{$content}";
+	display: inline-block;
+	padding-left : #{$pad-left};
+	padding-right: #{$pad-right};
+}
+
+// fontawesome uses fa- prefix frequently, avoiding it
+@mixin fas-solid ($content: null, $pad-left: null, $pad-right: null) {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	@include fontawesome ($content, $pad-left, $pad-right);
+}
+
+@mixin fas-regular ($content: null, $pad-left: null, $pad-right: null) {
+	font-family: "Font Awesome 5 Free";
+	@include fontawesome ($content, $pad-left, $pad-right);
+}
+
+@mixin fas-brand ($content: null, $pad-left: null, $pad-right: null) {
+	font-family: "Font Awesome 5 Brands";
+	@include fontawesome ($content, $pad-left, $pad-right);
+}
