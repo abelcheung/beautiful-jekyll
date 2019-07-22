@@ -47,7 +47,8 @@
         </div>
         <!-- Start comment form alert messaging -->
         <p class="hidden js-notice">
-          <strong class="js-notice-text"></strong>
+          <strong class="js-notice-text-success" hidden>{{ site.data.ui-text[site.locale].comment_success_msg | default: "Thanks for your comment! It will show on the site once it has been approved." }}</strong>
+          <strong class="js-notice-text-failure" hidden>{{ site.data.ui-text[site.locale].comment_error_msg | default: "Sorry, there was an error with your submission. Please make sure all required fields have been completed and try again." }}</strong>
         </p>
         <!-- End comment form alert messaging -->
         {% if site.staticman.reCaptcha.siteKey %}
@@ -56,7 +57,8 @@
           </div>
         {% endif %}
         <div class="form-group">
-          <button type="submit" id="comment-form-submit" tabindex="5" class="btn btn-primary btn-large">{{ site.data.ui-text[site.locale].comment_btn_submit | default: "Submit Comment" }}</button>
+          <button type="submit" id="comment-form-submit" tabindex="5" class="btn btn-primary btn-lg">{{ site.data.ui-text[site.locale].comment_btn_submit | default: "Submit Comment" }}</button>
+          <button type="submit" id="comment-form-submitted" tabindex="5" class="btn btn-primary btn-lg" disabled>{{ site.data.ui-text[site.locale].comment_btn_submitted | default: "Submitted" }}</button>
         </div>
       </form>
     </div>
@@ -67,5 +69,3 @@
       <script async src="https://www.google.com/recaptcha/api.js"></script>
     {% endif %}
   </div>
-  <!-- Load script to handle comment form submission -->
-  {% include_relative staticman-script.html %}
