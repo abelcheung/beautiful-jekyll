@@ -1,7 +1,6 @@
 /* Tags page */
 
 .btn-tag {
-	margin: 5px;
 	&:before {
 		@include fas-solid("\f02b", null, 0.3em);
 		vertical-align: middle;
@@ -24,15 +23,10 @@
 	list-style-type: none;
 	-webkit-padding-start: 0;
 	        padding-inline-start: 0;
-	display: -webkit-box;
-	display: flex;
-	flex-wrap: wrap;
-	-webkit-box-pack: justify;
-	        justify-content: space-between;
-	& > li {
-		-webkit-box-flex: 0;
-		        flex: 0 0 none;
-	}
+	display: grid;
+	grid-gap: ($padding-base-vertical * 2);
+	justify-items: center;
+	grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
 }
 
 .post-list {
