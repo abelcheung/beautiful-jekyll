@@ -219,52 +219,6 @@ img {
   }
 }
 
-/* --- Footer --- */
-
-footer {
-  padding: 30px 0;
-  border-top: 1px solid scale-color($color: $footer-col, $lightness: -5%);
-  margin-top: 50px;
-  font-size: 14px;
-  background-color: $footer-col;
-  @if global-variable-exists(footer-img) {
-	  @include bgimage($footer-img);
-  }
-}
-
-footer p.text-muted {
-  color: $footer-text-col;
-}
-
-footer a {
-  color: $footer-link-col;
-}
-
-footer .list-inline {
-  margin: 0;
-  padding: 0;
-}
-footer .copyright {
-  text-align: center;
-  margin-bottom: 0;
-}
-footer .theme-by {
-  text-align: center;
-  margin: 10px 0 0;
-}
-
-@media only screen and (min-width: $screen-sm-min) {
-  footer {
-    padding: 50px 0;
-  }
-  footer .footer-links {
-    font-size: 18px;
-  }
-  footer .copyright {
-    font-size: 16px;
-  }
-}
-
 /* --- Tags --- */
 
 .blog-tags {

@@ -1,0 +1,100 @@
+/* --- Footer --- */
+
+/*
+ * Note that IE hacks are added to render all lists as inline-block's
+ * Support for grid and flex layout are not on par with current standard
+ * or outright broken (e.g. misplaced items, layout changes upon mouseover)
+ */
+
+footer {
+	padding-top: 2em;
+	padding-bottom: 2em;
+	border-top: 1px solid scale-color($color: $footer-col, $lightness: -5%);
+	margin-top: 2em;
+	background-color: $footer-col;
+	text-align: center;
+	color: $footer-text-col;
+	@if global-variable-exists(footer-img) {
+		@include bgimage($footer-img);
+	}
+
+	a:hover, a:focus {
+		text-decoration: none;
+		color: $footer-link-col;
+	}
+}
+
+#footer-links {
+	display: grid;
+	grid-gap: 1em;
+	margin: 0 auto 2em;
+	-webkit-box-pack: center;
+	        justify-content: center;
+	justify-items: center;
+	-webkit-padding-start: 0;
+	        padding-inline-start: 0;
+	@media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		display: block;
+		padding-left: 0;
+	}
+	list-style: none;
+	// fa-lg = 1.33333em, fa-stack doubles it
+	grid-template-columns: repeat(auto-fit, 2.66666em);
+	a {
+		color: $footer-text-col;
+	}
+	> li {
+		display: inline-block;
+	}
+}
+
+%flex-list {
+	display: -webkit-box;
+	display: flex;
+	flex-wrap: wrap;
+	-webkit-box-align: center;
+	        align-items: center;
+	list-style: none;
+	-webkit-padding-start: 0;
+	        padding-inline-start: 0;
+	@media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		display: block;
+		padding-left: 0;
+	}
+	> li {
+		-webkit-box-flex: 0;
+		        flex: 0 0 auto;
+		display: inline-block;
+		vertical-align: middle;
+		&:not(:last-child) {
+			margin-right: 5px;
+		}
+	}
+}
+
+#copyright {
+	@extend %flex-list;
+	-webkit-box-pack: center;
+	        justify-content: center;
+	> li {
+		&:not(:first-child)::before {
+			display: inline-block;
+			vertical-align: middle;
+			content: "\2022";
+			margin-right: 5px;
+		}
+		> * {
+			vertical-align: middle;
+		}
+	}
+}
+
+#credits {
+	@extend %flex-list;
+	-webkit-box-pack: space-evenly;
+	        justify-content: space-evenly;
+	font-size: 85%;
+	> li {
+		max-width: 15em;
+	}
+}

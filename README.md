@@ -246,6 +246,7 @@ beautiful-jekyll theme.
 | `googlefonts` | Layout, Page | Removed. All Google font resource are actually CSS and thus merged into `css` settings above. |
 | `title-separator` | Site | Removed, now using bullet (U+2022) |
 | `link-tags` | Site | Removed, now setting is enforced |
+| `url-pretty` | Site | Removed, deemed redundant. Link to landing page already exists in navigation bar. |
 
 [61]: https://jekyllrb.com/docs/variables/
 [62]: https://github.com/daattali/beautiful-jekyll/#yaml-front-matter-parameters
