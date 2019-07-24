@@ -24,4 +24,11 @@
   {% include tracker/gtm_body.html %}
   {%- endif -%}
 
+{%- when "footer" -%}
+
+  {%- if site.matomo.opt-out -%}
+  <li><span><a href="https://{{ site.matomo.uri }}/index.php?module=CoreAdminHome&action=optOut"
+    target="_blank">Opt out of Matomo</a></span></li>
+  {%- endif -%}
+
 {%- endcase -%}

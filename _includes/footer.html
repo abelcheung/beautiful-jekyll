@@ -35,10 +35,7 @@
 <li><span>{{ site.time | date: '%Y' }}</span></li>
 <li><span>All Right Reserved</span></li>
 
-{% if site.matomo.opt-out %}
-<li><span><a href="https://{{ site.matomo.uri }}/index.php?module=CoreAdminHome&action=optOut"
-	target="_blank">Opt out of Matomo</a></span></li>
-{% endif %}
+{% include trackers.html place='footer' %}
 </ul>
 
 <ul id="credits">
