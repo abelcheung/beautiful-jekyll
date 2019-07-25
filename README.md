@@ -4,18 +4,28 @@ Forked from official Beautiful Jekyll theme, with changes moving faster
 forward, since Dean Attali desires a more stable theme as it has a large
 user base. Intended and finished changes include:
 
-- [x] Remote theme support
-- Speed up page loading with:
-  - [x] Delegating most JavaScript and CSS loading to fast CDN with best worldwide presence ([jsDelivr][11] and [Cloudflare cdnjs][12])
-  - [x] [Require.JS](https://requirejs.org/) integration
-  - [x] [loadCSS][40] integration
+#### Improve page responsive time by as much as 70%
+- [x] Delegating most JavaScript and CSS loading to fast CDN with best worldwide presence ([jsDelivr][11] and [Cloudflare cdnjs][12])
+- [x] [Require.JS](https://requirejs.org/) integration, loading JavaScripts asynchronously with dependency tracking
+- [x] [loadCSS][40] integration, delays loading of non-critical style sheets
+#### Update required components
+- [x] Bootstrap updated to 3.4.1
+- [x] jQuery updated to 3.4.1 (Bootstrap 3.4 series supports it)
 - [x] Font Awesome updated to 5.8.2 webfont version
-    - Not using SVG due to [problem in IE for CSS pseudo element][10]
-- [x] Bootstrap and jQuery updated to latest minor release
+  - Not using SVG due to [problem in IE for CSS pseudo element][10]
+- *(planning)* Use Bootstrap 4.x, either with SASS integration or old fashioned CSS override
+#### Other features
+- [x] Remote theme support
+- *(planning)* Enable extra feature with config toggle (like katex)
+- *(under progress)* Reusable include fragments for common components
+  - Currently implementing figure and slide show
+- *(planning)* Support for Jekyll custom collection
+#### Cleanup and rewrite
 - [x] URL settings follow Jekyll guideline (available upstream)
-- [ ] Use Bootstrap 4.x with SASS integration
-- [ ] *(under progress)* More SASS refactoring, currently theme only uses raw CSS
-- [x] Layout reorganization and cleanup, some parts rewritten (like tag page)
+- *(about 40% done)* SASS migration, upstream theme only uses raw CSS
+- *(under progress)* Layout reorganization, code cleanup and bug fixes
+- *(under progress)* Some parts rewritten (e.g. tag page, footer)
+- *(planning)* Localization related feature and cleanup
 
 [10]: https://github.com/FortAwesome/Font-Awesome/issues/12994
 [11]: https://www.jsdelivr.com/
