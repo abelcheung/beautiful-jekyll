@@ -13,7 +13,7 @@ var require = {
 	'],
 	baseUrl: '{{ "assets/js" | relative_url }}',
 	shim: {
-		bootstrap: { deps: ['jquery'] }
+		bootstrap: { deps: ['jquery', 'domReady!'] }
 	},
 	onNodeCreated: function(node, config, module, path) {
 		var sri;
