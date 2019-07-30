@@ -30,11 +30,9 @@ var require = {
 		}
 	},
 	paths: {
-		{% for lib in site.requirejs.libs %}
-		{%- if lib.sri -%}
-		{{ lib.name }} : '{{ lib.href }}',
-		{% endif %}
-		{%- endfor -%}
+		{%- for lib in site.requirejs.libs %}
+		{{ lib.name }} : '{{ lib.href | relative_url }}',
+		{%- endfor %}
 	}
 };
 </script>
