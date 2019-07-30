@@ -2,33 +2,33 @@
 
 {%- when "head" -%}
 
-  {%- if site.gtag.size > 0 -%}
-  {% include tracker/gtag.html %}
-  {%- endif -%}
+	{%- if site.gtag.size > 0 -%}
+	{% include tracker/gtag.html %}
+	{%- endif -%}
 
-  {%- if site.gtm.size > 0 -%}
-  {% include tracker/gtm_head.html %}
-  {%- endif -%}
+	{%- if site.gtm.size > 0 -%}
+	{% include tracker/gtm_head.html %}
+	{%- endif -%}
 
-  {%- if site.google_analytics.size > 0 -%}
-  {% include tracker/google_analytics.html %}
-  {%- endif -%}
+	{%- if site.google_analytics.size > 0 -%}
+	{% include tracker/google_analytics.html %}
+	{%- endif -%}
 
-  {%- if site.matomo.size > 0 -%}
-  {% include tracker/matomo.html %}
-  {%- endif -%}
+	{%- if site.matomo.size > 0 -%}
+	{% include tracker/matomo.html %}
+	{%- endif -%}
 
 {%- when "body" -%}
 
-  {%- if site.gtm.size > 0 -%}
-  {% include tracker/gtm_body.html %}
-  {%- endif -%}
+	{%- if site.gtm.size > 0 -%}
+	{% include tracker/gtm_body.html %}
+	{%- endif -%}
 
 {%- when "footer" -%}
 
-  {%- if site.matomo.opt-out -%}
-  <li><span><a href="https://{{ site.matomo.uri }}/index.php?module=CoreAdminHome&action=optOut"
-    target="_blank">Opt out of Matomo</a></span></li>
-  {%- endif -%}
+	{%- if site.matomo.opt-out -%}
+	<li><span><a href="https://{{ site.matomo.uri }}/index.php?module=CoreAdminHome&action=optOut"
+		target="_blank">Opt out of Matomo</a></span></li>
+	{%- endif -%}
 
 {%- endcase -%}

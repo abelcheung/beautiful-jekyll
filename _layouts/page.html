@@ -5,16 +5,14 @@ layout: default
 {% include header.html type="page" %}
 
 <div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class="row">
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-      <article role="main" class="main-content page-content">
-        {{ content }}
-      </article>
+  <article role="main" class="main-content page-content">
+    {{ content }}
+  </article>
 
-      {%- if page.comments %}
-      {% include comments.html %}
-      {%- endif %}
-    </div>
-  </div>
-</div>
+  {%- if page.comments %}
+  {% include comments.html %}
+  {%- endif %}
+</div></div></div>

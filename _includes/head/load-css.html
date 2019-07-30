@@ -19,31 +19,31 @@ https://github.com/w3c/preload/issues/127
 
 {%- for css in all_css -%}
 
-  {%- if css.first -%}
-    {%- assign href = css.first[0] -%}
-    {%- assign prop = css.first[1] -%}
-  {%- else -%}
-    {%- assign href = css -%}
-    {%- assign prop = nil -%}
-  {%- endif -%}
+	{%- if css.first -%}
+		{%- assign href = css.first[0] -%}
+		{%- assign prop = css.first[1] -%}
+	{%- else -%}
+		{%- assign href = css -%}
+		{%- assign prop = nil -%}
+	{%- endif -%}
 
-  {%- capture attrs -%}
-  {%- if prop.sri -%}
-    {% comment %}
-    Using SRI on local resource is pointless, but still adding filter anyway for safety
-    {% endcomment %}
-    href="{{ href | relative_url }}" integrity="{{ prop.sri }}" crossorigin="anonymous"
-  {%- else -%}
-    href="{{ href | relative_url }}"
-  {%- endif -%}
-  {%- endcapture -%}
+	{%- capture attrs -%}
+	{%- if prop.sri -%}
+		{% comment %}
+		Using SRI on local resource is pointless, but still adding filter anyway for safety
+		{% endcomment %}
+		href="{{ href | relative_url }}" integrity="{{ prop.sri }}" crossorigin="anonymous"
+	{%- else -%}
+		href="{{ href | relative_url }}"
+	{%- endif -%}
+	{%- endcapture -%}
 
-  {% if prop.critical %}{% comment %} No preload for important CSS {% endcomment %}
-  <link rel="stylesheet" {{ attrs }}>
-  {% else %}
-  <link rel="preload" {{ attrs }} as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" {{ attrs }}></noscript>
-  {% endif %}
+	{% if prop.critical %}{% comment %} No preload for important CSS {% endcomment %}
+	<link rel="stylesheet" {{ attrs }}>
+	{% else %}
+	<link rel="preload" {{ attrs }} as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" {{ attrs }}></noscript>
+	{% endif %}
 
 {%- endfor -%}
-  <link rel="stylesheet" href="{{ site.css.main | relative_url }}">
+	<link rel="stylesheet" href="{{ site.css.main | relative_url }}">

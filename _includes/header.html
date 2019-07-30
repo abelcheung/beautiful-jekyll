@@ -1,90 +1,83 @@
 {% if page.bigimg or page.title or page.use-site-title %}
 
 {% if page.bigimg %}
-  <div id="header-big-imgs" data-num-img={% if page.bigimg.first %}{{ page.bigimg.size }}{% else %}1{% endif %}
-    {% for bigimg in page.bigimg %}
-	  {% assign imgnum = forloop.index %}
-	  {% for imginfo in bigimg %}
-	    {% if imginfo[0] %}
-		  data-img-src-{{ imgnum }}="{{ imginfo[0] | relative_url }}"
-		  data-img-desc-{{ imgnum }}="{{ imginfo[1] }}"
+<div id="header-big-imgs" data-num-img={% if page.bigimg.first %}{{ page.bigimg.size }}{% else %}1{% endif %}
+{% for bigimg in page.bigimg %}
+	{% assign imgnum = forloop.index %}
+	{% for imginfo in bigimg %}
+		{% if imginfo[0] %}
+		data-img-src-{{ imgnum }}="{{ imginfo[0] | relative_url }}"
+		data-img-desc-{{ imgnum }}="{{ imginfo[1] }}"
 		{% else %}
-		  data-img-src-{{ imgnum }}="{{ imginfo | relative_url }}"
+		data-img-src-{{ imgnum }}="{{ imginfo | relative_url }}"
 		{% endif %}
-	  {% endfor %}
-    {% endfor %}
-  ></div>
+	{% endfor %}
+{% endfor %}
+></div>
 {% endif %}
 
 <header class="header-section {% if page.bigimg %}has-img{% endif %}">
 {% if page.bigimg %}
 <div class="big-img intro-header">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="{{ include.type }}-heading">
+<div class="container">
+<div class="row">
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class="{{ include.type }}-heading">
 
-	{%- if page.use-site-title -%}
-	  <h1>{{ site.title }}</h1>
-	  <hr class="small">
-	  <span class="{{ include.type }}-subheading">{{ site.description }}</span>
-	{%- else -%}
-	  <h1>{{ page.title }}</h1>
-	  {%- if page.subtitle -%}
-	  <hr class="small">
-	  <span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
-	  {%- endif -%}
+{%- if page.use-site-title -%}
+	<h1>{{ site.title }}</h1>
+	<hr class="small">
+	<span class="{{ include.type }}-subheading">{{ site.description }}</span>
+{%- else -%}
+	<h1>{{ page.title }}</h1>
+	{%- if page.subtitle -%}
+		<hr class="small">
+		<span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
 	{%- endif -%}
+{%- endif -%}
 	
-	{%- if include.type == "post" -%}
+{%- if include.type == "post" -%}
 	<div class="post-meta">
 	Posted on {{ page.date | date: "%B %-d, %Y" }}
 	{%- if page.last_modified_at -%}
-	<br />Last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
+		<br />Last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
 	{%- endif -%}
 	</div>
-	{%- endif -%}
+{%- endif -%}
 
-        </div><!-- {{include.type}}-heading -->
-      </div>
-    </div>
-  </div>
-  <span class='img-desc'></span>
+</div></div></div></div>
+<span class='img-desc'></span>
 </div>
-{% endif %}
+{% endif %}{% comment %} page.bigimg {% endcomment %}
+
 <div class="intro-header no-img">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="{{ include.type }}-heading">
+<div class="container">
+<div class="row">
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class="{{ include.type }}-heading">
 
-	{%- if page.use-site-title %}
-	  <h1>{{ site.title }}</h1>
-	  <hr class="small">
-	  <span class="{{ include.type }}-subheading">{{ site.description }}</span>
-	{%- else %}
-	  <h1>{{ page.title }}</h1>
-	  {%- if page.subtitle -%}
-	  <span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
-	  {%- endif -%}
+{%- if page.use-site-title %}
+	<h1>{{ site.title }}</h1>
+	<hr class="small">
+	<span class="{{ include.type }}-subheading">{{ site.description }}</span>
+{%- else %}
+	<h1>{{ page.title }}</h1>
+	{%- if page.subtitle -%}
+		<span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
 	{%- endif -%}
+{%- endif -%}
 	
-	{%- if include.type == "post" -%}
+{%- if include.type == "post" -%}
 	<div class="post-meta">
 	Posted on {{ page.date | date: "%B %-d, %Y" }}
 	{%- if page.last_modified_at -%}
-	<br />Last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
+		<br />Last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
 	{%- endif -%}
 	</div>
-	{%- endif -%}
+{%- endif -%}
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</div></div></div></div></div>
 </header>
-
 
 {% else %}
 <div class="intro-header"></div>
