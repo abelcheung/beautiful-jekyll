@@ -1,9 +1,14 @@
 ---
 layout: null
 ---
+{%- assign deps = 'jquery,domReady!' | split: ',' -%}
+{%- if site.staticman.reCaptcha.siteKey -%}
+	{%- assign deps = deps | push: 'recaptcha' -%}
+{%- endif -%}
 
-(function ($) {
-  var $comments = $('.js-comments');
+define ({{ deps | jsonify }}, function ($) {
+
+$('.page__comments-form').removeClass('hidden');
 
   $('#new_comment').submit(function () {
     var form = this;
@@ -51,4 +56,5 @@ layout: null
       $('.page__comments-form .js-notice-text-failure').removeClass('hidden');
     }
   }
-})(jQuery);
+
+});

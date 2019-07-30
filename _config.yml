@@ -241,6 +241,8 @@ requirejs:
     - name: cssrelpreload
       href: 'https://cdn.jsdelivr.net/npm/fg-loadcss@2.1.0/dist/cssrelpreload.min'
       sri : 'sha384-sQ0Z7imIAcp1/Z47hsy2G3MgW9DiAJJnAyLej+zjg0mJcwapL9pEzZU0DU+QYXq2'
+    - name: recaptcha
+      href: 'https://www.google.com/recaptcha/api'
 
 plugins:
   - jekyll-remote-theme

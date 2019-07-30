@@ -10,7 +10,7 @@
           {% assign url = comment[1].url %}
           {% assign date = comment[1].date %}
           {% assign message = comment[1].message %}
-          {% include_relative staticman-comment.html index=forloop.index email=email name=name url=url date=date message=message %}
+          {% include comment/staticman-comment.html index=forloop.index email=email name=name url=url date=date message=message %}
         {% endfor %}
       {% endif %}
     </div>
@@ -64,8 +64,4 @@
     </div>
     <!-- End new comment form -->
     <noscript><div class="alert alert-warning"><strong>Please enable JavaScript</strong> to post comments powered by Staticman.</div></noscript>
-    <!-- Load reCaptcha if site key is set -->
-    {% if site.staticman.reCaptcha.siteKey %}
-      <script async src="https://www.google.com/recaptcha/api.js"></script>
-    {% endif %}
   </div>
