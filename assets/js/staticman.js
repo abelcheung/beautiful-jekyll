@@ -2,59 +2,57 @@
 layout: null
 ---
 {%- assign deps = 'jquery,domReady!' | split: ',' -%}
-{%- if site.staticman.reCaptcha.siteKey -%}
+{%- assign sm = site.staticman -%}
+{%- if sm.reCaptcha.siteKey -%}
 	{%- assign deps = deps | push: 'recaptcha' -%}
 {%- endif -%}
 
 define ({{ deps | jsonify }}, function ($) {
 
-$('.page__comments-form').removeClass('hidden');
+	var $spinner = $('#staticman-submit-wrapper > .spinner');
+	var $form    = $('#staticman-form-wrapper > form');
+	var $msgOk   = $form.children('.alert-success');
+	var $msgBad  = $form.children('.alert-danger');
 
-$('#new_comment').submit(function () {
-	var form = this;
+	$('#staticman-form-wrapper').removeClass('hidden');
+	$spinner.hide();
 
-	$(form).addClass('disabled');
-
-	{% assign sm = site.staticman -%}
-	var endpoint = '{{ sm.endpoint | default: "https://staticman3.herokuapp.com/v3/entry/github/" }}';
-	var repository = '{{ sm.repository }}';
-	var branch = '{{ sm.branch }}';
-
-	$.ajax({
-		type: $(this).attr('method'),
-		url: endpoint + repository + '/' + branch + '/comments',
-		data: $(this).serialize(),
-		contentType: 'application/x-www-form-urlencoded',
-		success: function (data) {
-			$('#comment-form-submit').addClass('hidden');
-			$('#comment-form-submitted').removeClass('hidden');
-			$('.page__comments-form .js-notice').removeClass('notice--danger');
-			$('.page__comments-form .js-notice').addClass('notice--success');
-			showAlert('success');
-		},
-		error: function (err) {
-			console.log(err);
-			$('#comment-form-submitted').addClass('hidden');
-			$('#comment-form-submit').removeClass('hidden');
-			$('.page__comments-form .js-notice').removeClass('notice--success');
-			$('.page__comments-form .js-notice').addClass('notice--danger');
-			showAlert('failure');
-			$(form).removeClass('disabled');
-		}
+	$('*[type="submit"]', $form).click( function(event) {
+		$msgBad.addClass('hidden');
+		$spinner.fadeIn();
 	});
 
-	return false;
-});
+	$form.submit(function (event) {
 
-function showAlert(message) {
-	$('.page__comments-form .js-notice').removeClass('hidden');
-	if (message == 'success') {
-		$('.page__comments-form .js-notice-text-success').removeClass('hidden');
-		$('.page__comments-form .js-notice-text-failure').addClass('hidden');
-	} else {
-		$('.page__comments-form .js-notice-text-success').addClass('hidden');
-		$('.page__comments-form .js-notice-text-failure').removeClass('hidden');
-	}
-}
+		var endpt = '{{ sm.endpoint | default: "https://staticman3.herokuapp.com/v3/entry/github/" }}'.replace(/\/$/, '');
 
+		event.preventDefault();
+
+		$.ajax({
+			method: 'post',
+			url: [ endpt, '{{sm.repository}}', '{{sm.branch}}', 'comments' ].join('/'),
+			data: $form.serialize(),
+			success: function (data, status, jqXHR) {
+				$('#staticman-submit-wrapper').fadeOut();
+				$msgOk.removeClass('hidden');
+				$msgBad.addClass('hidden');
+			},
+			error: function (jqXHR, status, error) {
+				console.log('Error in form submission: ' + error);
+				console.log(jqXHR);
+				$msgOk.addClass('hidden');
+				$msgBad.removeClass('hidden');
+				if (jqXHR.responseJSON.message) {
+					$('#staticman-ajax-error').html(jqXHR.responseJSON.message);
+				} else if (jqXHR.responseJSON.rawError.message) {
+					$('#staticman-ajax-error').html(jqXHR.responseJSON.rawError.message);
+				} else {
+					$('#staticman-ajax-error').html(error);
+				};
+			},
+			complete: function (jqXHR, status) {
+				$spinner.fadeOut();
+			},
+		});
+	});
 });

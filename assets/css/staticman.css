@@ -1,180 +1,88 @@
 /* ==========================================================================
  Forms
  ========================================================================== */
-.comments-container form {
-	margin: 0 0 5px 0;
-	padding: 1em;
-	background-color: #f2f3f3;
-}
-.comments-container form p {
-	margin-bottom: 2.5px;
-}
-.comments-container form br {
-	display: none;
-}
-.comments-container label, .comments-container input, .comments-container button, .comments-container textarea {
-	vertical-align: baseline;
-	vertical-align: middle;
-}
-.comments-container input, .comments-container button, .comments-container textarea {
-	box-sizing: border-box;
-}
-.comments-container label {
-	display: block;
-	margin-bottom: 0.25em;
-	color: #494e52;
-	cursor: pointer;
-}
-.comments-container label small {
-	font-size: 0.75em;
-}
-.comments-container label input, .comments-container label textarea {
-	display: block;
-}
-.comments-container input, .comments-container textarea {
-	display: inline-block;
+#staticman-form-wrapper input, #staticman-form-wrapper textarea {
 	width: 100%;
-	padding: 0.25em;
-	margin-bottom: 0.5em;
-	color: #494e52;
-	background-color: #fff;
-	border: #f2f3f3;
-	border-radius: 4px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+	padding: 0.25em 0.5em;
+	border: 1px solid rgba(0,0,0,0.2);
+	box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background-color: rgba(255,255,255,0.7);
 }
-.comments-container .input-mini {
-	width: 60px;
-}
-.comments-container .input-small {
-	width: 90px;
-}
-.comments-container input[type="button"], .comments-container input[type="reset"], .comments-container input[type="submit"] {
+#staticman-form-wrapper input[type="button"], #staticman-form-wrapper input[type="reset"], #staticman-form-wrapper input[type="submit"] {
 	width: auto;
-	height: auto;
 	cursor: pointer;
 	overflow: visible;
 }
-.comments-container textarea {
+#staticman-form-wrapper textarea {
 	resize: vertical;
-	height: auto;
-	overflow: auto;
-	vertical-align: top;
-}
-.comments-container input[type="hidden"] {
-	display: none;
-}
-.comments-container .form {
-	position: relative;
 }
 /*
  Focus & active state
  ========================================================================== */
-.comments-container input:focus, .comments-container textarea:focus {
-	border-color: #7a8288;
+#staticman-form-wrapper input:focus, #staticman-form-wrapper textarea:focus {
+	border: 1px solid rgba(0,0,0,0.4);
+	box-shadow: inset 0 0 5px rgba(0,0,0,0.4);
+	background-color: rgba(255,255,255,0.95);
 	outline: 0;
 	outline: thin dotted \9;
-	box-shadow: inset 0 1px 3px rgba(73, 78, 82, 0.06), 0 0 5px rgba(122, 130, 136, 0.7);
 }
-.comments-container input[type="file"]:focus, .comments-container input[type="radio"]:focus, .comments-container input[type="checkbox"]:focus:focus {
+#staticman-form-wrapper input[type="file"]:focus, #staticman-form-wrapper input[type="radio"]:focus, #staticman-form-wrapper input[type="checkbox"]:focus {
 	box-shadow: none;
 }
-/*
- Help text
- ========================================================================== */
-.comments-container .help-block {
-	color: #898c8e;
-}
-.comments-container .help-block {
-	display: block;
+#staticman-form-wrapper .field-help {
 	margin-bottom: 1em;
-	line-height: 1em;
-}
-/*
- .form-group
- ========================================================================== */
-.comments-container .form-group {
-	margin-bottom: 5px;
-	padding: 0;
-	border-width: 0;
 }
 /*
  Comments
  ========================================================================== */
-.comments-container .page__comments {
-	float: left;
-	margin-left: 0;
-	margin-right: 0;
-	width: 100%;
-	clear: both;
+#staticman-form-wrapper {
+	background-color: rgba(0,0,0,0.1);
+	padding: 30px;
+	border-radius: 4px;
 }
-.comments-container .page__comments-title {
-	margin-top: 2rem;
-	margin-bottom: 10px;
-	padding-top: 2rem;
-	border-top: 1px solid #f2f3f3;
+#staticman-form-wrapper > *:first-child {
+	margin-top: 0;
 }
-.comments-container .page__comments-form {
-	-webkit-transition: all 0.2s ease-in-out;
-	transition: all 0.2s ease-in-out;
-}
-.comments-container .page__comments-form.disabled input, .comments-container .page__comments-form.disabled button, .comments-container .page__comments-form.disabled textarea, .comments-container .page__comments-form.disabled label {
-	pointer-events: none;
-	cursor: not-allowed;
-	filter: alpha(opacity=65);
-	box-shadow: none;
-	opacity: 0.65;
+#staticman-form-wrapper > *:last-child {
+	margin-bottom: 0;
 }
 .comments-container .comment {
 	margin: 1em 0;
 }
 .comments-container .comment:not(:last-child) {
-	border-bottom: 1px solid #f2f3f3;
+	border-bottom: 3px solid rgba(0,0,0,0.1);
 }
-.comments-container .comment__avatar-wrapper {
-	float: left;
-	width: 60px;
-	height: 60px;
+.comments-container .comment-avatar {
+	margin: 0 20px 20px 0;
 }
-.comments-container .comment__avatar {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-}
-.comments-container .comment__content-wrapper {
-	width: calc(100% - 60px);
-}
-.comments-container .comment__author {
-	margin: 0;
-}
-.comments-container .comment__author a {
-	text-decoration: none;
-}
-.comments-container .comment__date {
-	margin: 0;
-}
-.comments-container .comment__date a {
-	text-decoration: none;
-}
-/* ==========================================================================
- PRINT STYLES
- ========================================================================== */
-.comments-container @media print {
-	/*
-	 Hide the following elements on print
-	 ========================================================================== */
-.comments-container [hidden] {
+/* Don't print comment form on print */
+@media print {
+	#staticman-form-wrapper {
 		display: none;
 	}
-.comments-container .masthead, .comments-container .toc, .comments-container .page__share, .comments-container .page__related, .comments-container .pagination, .comments-container .ads, .comments-container .page__footer, .comments-container .page__comments-form, .comments-container .author__avatar, .comments-container .author__content, .comments-container .author__urls-wrapper, .comments-container .nav__list, .comments-container .sidebar, .comments-container .adsbygoogle {
-		display: none !important;
-		height: 1px !important;
-	}
 }
-/*
- Post pagination navigation links
- ========================================================================== */
-.comments-container .page__comments + .comments-container .pagination {
-	margin-top: 2em;
-	padding-top: 2em;
-	border-top: 1px solid #f2f3f3;
+
+/* spinner from loading.io */
+.spinner {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+	vertical-align: middle;
+}
+.spinner:after {
+	content: " ";
+	display: block;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	border-width: 0.3em;
+	border-style: solid;
+	border-color: #444 transparent #444 transparent;
+	animation: spinner 2s linear infinite;
+}
+@keyframes spinner {
+	0%   { transform: rotate(0deg)   }
+	100% { transform: rotate(360deg) }
 }
