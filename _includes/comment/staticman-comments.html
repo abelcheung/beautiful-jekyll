@@ -38,7 +38,7 @@
 
 	<div id="staticman-submit-wrapper" class="form-group clearfix">
 		{% if site.staticman.reCaptcha.siteKey %}
-		<div class="pull-right g-recaptcha" data-sitekey="{{ site.staticman.reCaptcha.siteKey }}"></div>
+		<div class="g-recaptcha" data-size="compact" data-sitekey="{{ site.staticman.reCaptcha.siteKey }}"></div>
 		{% endif %}
 		<button type="submit" class="btn btn-primary">Submit Comment</button>
 		<span class="spinner"></span>

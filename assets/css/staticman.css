@@ -43,7 +43,7 @@
 #staticman-form-wrapper > *:first-child {
 	margin-top: 0;
 }
-#staticman-form-wrapper > *:last-child {
+#staticman-form-wrapper > *:not([class~="hidden"]):last-child {
 	margin-bottom: 0;
 }
 .comments-container .comment {
@@ -85,4 +85,20 @@
 @keyframes spinner {
 	0%   { transform: rotate(0deg)   }
 	100% { transform: rotate(360deg) }
+}
+
+#staticman-form-wrapper .g-recaptcha {
+	float: right;
+	width: 164px;
+	height: 76px;
+}
+
+@media only screen and (max-width: 479px) {
+	#staticman-form-wrapper {
+		padding: 10px;
+	}
+	#staticman-form-wrapper .g-recaptcha {
+		float: none;
+		margin-bottom: 15px; /* $form-group-margin-bottom */
+	}
 }
