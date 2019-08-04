@@ -257,6 +257,7 @@ beautiful-jekyll theme.
 | `title-separator` | Site | Removed, now using bullet (U+2022) |
 | `link-tags` | Site | Removed, now setting is enforced |
 | `url-pretty` | Site | Removed, deemed redundant. Link to landing page already exists in navigation bar. |
+| `gh-repo`, `gh-badge` | Page | Removed, of little use to bloggers. Even software project maintainers may choose other ways to showcase their projects. |
 
 [61]: https://jekyllrb.com/docs/variables/
 [62]: https://github.com/daattali/beautiful-jekyll/#yaml-front-matter-parameters
