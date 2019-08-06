@@ -50,8 +50,9 @@
 	// reCaptcha
 	.g-recaptcha {
 		float: right;
-		width: 164px;
-		height: 76px;
+		max-width: 200px;
+		max-height: 100px;
+		overflow: hidden;
 		@media only screen and (max-width: $screen-xs-min - 1) {
 			float: none;
 			margin-bottom: $form-group-margin-bottom;
