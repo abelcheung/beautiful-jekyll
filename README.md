@@ -258,6 +258,8 @@ beautiful-jekyll theme.
 | `link-tags` | Site | Removed, now setting is enforced |
 | `url-pretty` | Site | Removed, deemed redundant. Link to landing page already exists in navigation bar. |
 | `gh-repo`, `gh-badge` | Page | Removed, of little use to bloggers. Even software project maintainers may choose other ways to showcase their projects. |
+| `social-share` | Page | Renamed to `shareabale` |
+| `share-links-active` | Site | Renamed to `shareable-link` |
 
 [61]: https://jekyllrb.com/docs/variables/
 [62]: https://github.com/daattali/beautiful-jekyll/#yaml-front-matter-parameters

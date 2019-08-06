@@ -1,8 +1,5 @@
 ---
 layout: default
-css:
-  - "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css":
-      sri: "sha256-rFMLRbqAytD9ic/37Rnzr2Ycy/RlpxE5QH52h7VoIZo="
 ---
 
 {% include header.html type="post" %}
@@ -19,7 +16,7 @@ css:
   {% include tag-list.html post=page %}
   {% endif %}
 
-  {% if page.social-share %}
+  {% if page.shareable and site.shareable-link.size > 0 %}
   {% include social-share.html %}
   {% endif %}
 

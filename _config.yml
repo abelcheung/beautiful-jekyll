@@ -75,10 +75,12 @@ social-network-links:
 #  yelp: yourname
 
 # Select which share links to show in posts
-share-links-active:
-  twitter: true
-  facebook: true
-  linkedin: true
+# Only those with shareURL key under data/SocialNetworks.yml are honored
+shareable-link:
+  - twitter
+  - facebook
+  - linkedin
+  - reddit
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
@@ -152,7 +154,7 @@ defaults:
     values:
       layout: "post"
       comments: true  # add comments to all blog posts
-      social-share: true # add social media sharing buttons to all blog posts
+      shareable: true # add social sharing buttons to all blog posts
   -
     scope:
       path: "" # all files
@@ -250,3 +252,4 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
+# vim: set sw=2 ts=2 sts=-1 et :

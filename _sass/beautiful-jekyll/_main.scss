@@ -428,7 +428,18 @@ img {
 /* --- Social media sharing section --- */
 
 #social-share-section {
+  color: rgba(black,50%);
   margin-bottom: 30px;
+  > ul {
+    display: inline-block;
+    margin-left: 0;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  & .fa-stack {
+    width: 2em;
+  }
 }
 
 /* --- Notification boxes --- */
