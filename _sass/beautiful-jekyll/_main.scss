@@ -442,6 +442,11 @@ img {
   }
 }
 
+// Stacked icons are already vertically centered, but not for simple ones
+.social-share-icon > i {
+  vertical-align: middle;
+}
+
 /* --- Notification boxes --- */
 .box-note, .box-warning, .box-error, .box-success {
   padding: 15px 15px 15px 10px;

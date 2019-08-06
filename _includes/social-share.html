@@ -11,11 +11,15 @@
 		{%- continue -%}
 	{%- endunless -%}
 	{%- assign href = element.shareURL | replace: '@url@', urlEncoded | replace: '@title@', titleEncoded %}
-	<li><a href="{{ href }}" aria-label="Share on {{ element.name }}" title="Share on {{ element.name }}">
+	<li><a href="{{ href }}" class="social-share-icon" aria-label="Share on {{ element.name }}" title="Share on {{ element.name }}">
+	{% if element.icon-unstacked -%}
+		<i class="{{ element.icon }} fa-2x" aria-hidden="true"></i>
+	{%- else -%}
 		<span class="fa-stack" aria-hidden="true">
 			<i class="fas fa-square fa-stack-2x"></i>
 			<i class="{{ element.icon }} fa-stack-1x fa-inverse"></i>
 		</span>
+	{%- endif %}
 	</a></li>
 {% endfor -%}
 
