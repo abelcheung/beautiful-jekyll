@@ -425,28 +425,6 @@ img {
   background-color: $hover-col;
 }
 
-/* --- Social media sharing section --- */
-
-#social-share-section {
-  color: rgba(black,50%);
-  margin-bottom: 30px;
-  > ul {
-    display: inline-block;
-    margin-left: 0;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  & .fa-stack {
-    width: 2em;
-  }
-}
-
-// Stacked icons are already vertically centered, but not for simple ones
-.social-share-icon > i {
-  vertical-align: middle;
-}
-
 /* --- Notification boxes --- */
 .box-note, .box-warning, .box-error, .box-success {
   padding: 15px 15px 15px 10px;
