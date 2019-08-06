@@ -1,0 +1,117 @@
+/* Staticman styles */
+
+#staticman-form-wrapper {
+
+	/* Don't print comment form on print */
+	@media print {
+		display: none;
+	}
+
+	background-color: rgba(black, 10%);
+	padding: 30px;
+	border-radius: $border-radius-base;
+	@media only screen and (max-width: $screen-xs-min - 1) {
+		padding: 10px;
+	}
+
+	> *:first-child {
+		margin-top: 0;
+	}
+	> *:not([class~="hidden"]):last-child {
+		margin-bottom: 0;
+	}
+
+	input, textarea {
+		width: 100%;
+		padding: 0.25em 0.5em;
+		border: 1px solid rgba(black, 20%);
+		border-radius: $border-radius-base;
+		box-shadow: inset 0 0 5px rgba(black, 20%);
+		background-color: rgba(white, 70%);
+		&:focus {
+			border: 1px solid rgba(black, 40%);
+			box-shadow: inset 0 0 5px rgba(black, 40%);
+			background-color: white;
+		}
+	}
+	input[type="button"], input[type="reset"], input[type="submit"] {
+		width: auto;
+		cursor: pointer;
+		overflow: visible;
+	}
+	textarea {
+		resize: vertical;
+	}
+
+	.field-help {
+		margin-bottom: 1em;
+	}
+
+	// reCaptcha
+	.g-recaptcha {
+		float: right;
+		width: 164px;
+		height: 76px;
+		@media only screen and (max-width: $screen-xs-min - 1) {
+			float: none;
+			margin-bottom: $form-group-margin-bottom;
+		}
+	}
+}
+
+/* Individual comment */
+.comments-container {
+	.comment {
+		margin: 1em 0;
+		&:not(:last-child) {
+			border-bottom: 3px solid rgba(black, 10%);
+		}
+	}
+	.comment-avatar {
+		margin: 0 20px 20px 0;
+	}
+}
+
+/* spinner from loading.io */
+$spinner-dimension: $line-height-computed + $padding-base-vertical * 2 + 2; // btn height
+
+.spinner {
+	display: inline-block;
+	width: $spinner-dimension;
+	height: $spinner-dimension;
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+	vertical-align: middle;
+	&:after {
+		content: " ";
+		display: block;
+		width: $spinner-dimension;
+		height: $spinner-dimension;
+		border-radius: 50%;
+		border-width: 0.3em;
+		border-style: solid;
+		border-color: #444 transparent #444 transparent;
+		-webkit-animation: spinner 2s linear infinite;
+		        animation: spinner 2s linear infinite;
+	}
+}
+@-webkit-keyframes spinner {
+	0%   {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		        transform: rotate(360deg);
+	}
+}
+@keyframes spinner {
+	0%   {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		        transform: rotate(360deg);
+	}
+}

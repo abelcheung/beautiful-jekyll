@@ -14,4 +14,9 @@
 @import "beautiful-jekyll/footer";
 @import "beautiful-jekyll/social-share";
 @import "beautiful-jekyll/main";
+
+{%- if site.staticman.repository and site.staticman.branch %}
+@import "beautiful-jekyll/staticman";
+{%- endif -%}
+
 @import "customize";

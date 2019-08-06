@@ -11,10 +11,6 @@ https://github.com/w3c/preload/issues/127
 {%- if layout.css -%}{%- assign all_css = all_css | concat: layout.css -%}{%- endif -%}
 {%- if   page.css -%}{%- assign all_css = all_css | concat:   page.css -%}{%- endif -%}
 
-{%- if page.comments and site.staticman.repository and site.staticman.branch -%}
-{%- assign all_css = all_css | push: '/assets/css/staticman.css' -%}
-{%- endif -%}
-
 {%- assign all_css = all_css | compact | uniq -%}
 
 {%- for css in all_css -%}
