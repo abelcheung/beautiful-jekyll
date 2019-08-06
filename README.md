@@ -260,6 +260,7 @@ beautiful-jekyll theme.
 | `gh-repo`, `gh-badge` | Page | Removed, of little use to bloggers. Even software project maintainers may choose other ways to showcase their projects. |
 | `social-share` | Page | Renamed to `shareabale` |
 | `share-links-active` | Site | Renamed to `shareable-link` |
+| `excerpt_length` | Site | Removed. Users are encouraged to manually specify excerpt or use custom excerpt marker. |
 
 [61]: https://jekyllrb.com/docs/variables/
 [62]: https://github.com/daattali/beautiful-jekyll/#yaml-front-matter-parameters

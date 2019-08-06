@@ -134,10 +134,6 @@ staticman:
 # Facebook App ID
 # fb_app_id: ""
 
-# Excerpt Word Length
-# Truncates the excerpt to the specified number of words on the index page
-excerpt_length: 50
-
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (https://jekyllrb.com/docs/configuration/default/)
