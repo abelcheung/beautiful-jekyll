@@ -37,12 +37,7 @@
 {%- endif -%}
 	
 {%- if include.type == "post" -%}
-	<div class="post-meta">
-	Posted on {{ page.date | date: "%B %-d, %Y" }}
-	{%- if page.last_modified_at -%}
-		<br />Last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
-	{%- endif -%}
-	</div>
+{%- include post-meta.html post=page style="full" -%}
 {%- endif -%}
 
 </div></div></div></div>
@@ -68,12 +63,7 @@
 {%- endif -%}
 	
 {%- if include.type == "post" -%}
-	<div class="post-meta">
-	Posted on {{ page.date | date: "%B %-d, %Y" }}
-	{%- if page.last_modified_at -%}
-		<br />Last modified {{ page.last_modified_at | date: "%B %-d, %Y" }}
-	{%- endif -%}
-	</div>
+{%- include post-meta.html post=page style="full" -%}
 {%- endif -%}
 
 </div></div></div></div></div>

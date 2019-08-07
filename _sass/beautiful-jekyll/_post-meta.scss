@@ -1,0 +1,20 @@
+/* Post metadata (creation time, tags, etc) */
+
+.post-meta {
+	color: rgba(black,70%);
+	font-family: $font-family-ui;
+	font-style: normal;
+	font-size: 90%;
+	> *:not(:last-child) {
+		margin-bottom: 0.3em;
+	}
+}
+
+.post-time:before {
+	@include fas-solid("\f304"); // fa-pen
+	margin-right: 0.3em;
+}
+.post-tags:before {
+	@include fas-solid("\f02b"); // fa-tag
+	margin-right: 0.3em;
+}

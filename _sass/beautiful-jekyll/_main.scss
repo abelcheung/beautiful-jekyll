@@ -61,10 +61,15 @@ img {
   max-width: 100%;
 }
 
-.main-content, .post-meta,
+.main-content,
 .post-preview .post-entry {
   font-family: $font-family-content;
   @include font-weight($font-weight-content);
+}
+
+.list-inline {
+  display: inline-block;
+  margin-bottom: 0;
 }
 
 /* --- Navbar --- */
@@ -219,37 +224,6 @@ img {
   }
 }
 
-/* --- Tags --- */
-
-.blog-tags {
-  color: #999;
-  font-size: 15px;
-  margin-bottom: 30px;
-}
-
-.blog-tags a {
-  color: $link-col;
-  text-decoration: none;
-  padding: 0px 5px;
-}
-
-.blog-tags a:hover {
-  border-radius: 2px;
-  color: $hover-col;
-  background-color: #EEE;
-}
-
-.post-preview .blog-tags {
-  margin-top: 5px;
-  margin-bottom: 0;
-}
-
-@media only screen and (min-width: $screen-sm-min) {
-  .post-preview .blog-tags {
-    margin-top: 10px;
-  }
-}
-
 /* --- Post and page headers --- */
 
 .intro-header {
@@ -393,12 +367,6 @@ img {
   display: block;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-}
-
-.post-meta {
-	color: #808080;
-	font-style: italic;
-	margin-bottom: 30px;
 }
 
 /* --- Pager --- */
