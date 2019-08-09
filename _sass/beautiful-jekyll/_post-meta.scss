@@ -1,10 +1,10 @@
 /* Post metadata (creation time, tags, etc) */
 
 .post-meta {
-	color: rgba(black,70%);
+	color: rgba(black,60%);
 	font-family: $font-family-ui;
 	font-style: normal;
-	font-size: 90%;
+	font-size: 85%;
 	> *:not(:last-child) {
 		margin-bottom: 0.3em;
 	}

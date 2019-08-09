@@ -1,74 +1,93 @@
-{% if page.bigimg or page.title or page.use-site-title %}
+{% comment %}
+Canonicalize all possible setting situations as 2-dim array
+{% endcomment %}
+{%- assign array0 = '' | split: '' -%}
+{%- assign bigimg = array0 -%}
+{%- if page.bigimg -%}
+	{%- if page.bigimg.first -%}
+	{%- for b in page.bigimg -%}
+		{%- if b.first -%}
+			{%- assign item = array0 | push: b.first[0] | push: b.first[1] -%}
+		{%- else -%}
+			{%- assign item = array0 | push: b | push: '' -%}
+		{%- endif -%}
+		{%- assign bigimg = bigimg | push: item -%}
+	{%- endfor -%}
+	{%- else -%}
+		{%- assign item = array0 | push: page.bigimg | push: '' -%}
+		{%- assign bigimg = bigimg | push: item -%}
+	{%- endif -%}
+{%- endif -%}
 
-{% if page.bigimg %}
-<div id="header-big-imgs" data-num-img={% if page.bigimg.first %}{{ page.bigimg.size }}{% else %}1{% endif %}
-{% for bigimg in page.bigimg %}
-	{% assign imgnum = forloop.index %}
-	{% for imginfo in bigimg %}
-		{% if imginfo[0] %}
-		data-img-src-{{ imgnum }}="{{ imginfo[0] | relative_url }}"
-		data-img-desc-{{ imgnum }}="{{ imginfo[1] }}"
-		{% else %}
-		data-img-src-{{ imgnum }}="{{ imginfo | relative_url }}"
-		{% endif %}
-	{% endfor %}
-{% endfor %}
-></div>
-{% endif %}
+{%- case bigimg.size -%}
+{%- when 0 -%}
+	<header>
+{% when 1 -%}{% comment %} Default image in case javascript is disabled {% endcomment -%}
+	<header class="has-img" style="background-image: url({{ bigimg[0][0] | relative_url }})">
+{% else -%}
+	{% comment %} Create attributes from multiple header images {% endcomment -%}
+	{%- assign attrs = array0 -%}
+	{%- for b in bigimg -%}
+		{%- capture attr -%}data-img-src-{{ forloop.index }}="{{ b[0] | relative_url }}"{%- endcapture -%}
+		{%- assign attrs = attrs | push: attr -%}
+		{%- if b[1].size > 0 -%}{% comment %} Description unneeded if empty {% endcomment -%}
+			{%- capture attr -%}data-img-desc-{{ forloop.index }}="{{ b[1] | strip | xml_escape }}"{%- endcapture -%}
+			{%- assign attrs = attrs | push: attr -%}
+		{%- endif -%}
+	{%- endfor -%}
+	<div id="header-big-imgs" data-num-img="{{ bigimg.size }}" {{ attrs | join: " " }}></div>
+	<noscript><header class="has-img" style="background-image: url({{ bigimg[0][0] | relative_url }})"></noscript>
+	<header class="has-img">
+{% endcase %}
 
-<header class="header-section {% if page.bigimg %}has-img{% endif %}">
-{% if page.bigimg %}
-<div class="big-img intro-header">
 <div class="container">
 <div class="row">
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class="{{ include.type }}-heading">
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 {{ include.type }}-heading">
 
 {%- if page.use-site-title -%}
 	<h1>{{ site.title }}</h1>
-	<hr class="small">
-	<span class="{{ include.type }}-subheading">{{ site.description }}</span>
+	<hr class="small" />
+	<h2>{{ site.description }}</h2>
 {%- else -%}
 	<h1>{{ page.title }}</h1>
 	{%- if page.subtitle -%}
-		<hr class="small">
-		<span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
+		<hr class="small" />
+		<h2>{{ page.subtitle }}</h2>
 	{%- endif -%}
 {%- endif -%}
-	
-{%- if include.type == "post" -%}
-{%- include post-meta.html post=page style="full" -%}
-{%- endif -%}
 
-</div></div></div></div>
-<span class='img-desc'></span>
-</div>
-{% endif %}{% comment %} page.bigimg {% endcomment %}
+{%- comment %}
 
-<div class="intro-header no-img">
-<div class="container">
-<div class="row">
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class="{{ include.type }}-heading">
+Since post metadata uses relatively small font, it is not very readable
+when intermingled with colorful background image. No amount of text shadow
+or coloring can fix it.
 
-{%- if page.use-site-title %}
-	<h1>{{ site.title }}</h1>
-	<hr class="small">
-	<span class="{{ include.type }}-subheading">{{ site.description }}</span>
-{%- else %}
-	<h1>{{ page.title }}</h1>
-	{%- if page.subtitle -%}
-		<span class="{{ include.type }}-subheading">{{ page.subtitle }}</span>
-	{%- endif -%}
-{%- endif -%}
-	
-{%- if include.type == "post" -%}
-{%- include post-meta.html post=page style="full" -%}
-{%- endif -%}
+In such case, although structurally incorrect, move metadata out of
+header for the sake of readability.
 
-</div></div></div></div></div>
+{% endcomment -%}
+
+{%- if bigimg.size > 0 %}
+
+</div></div></div>
+<span class='img-desc' {% unless bigimg[0][1].size > 0 %}style="display: none"{% endunless %}>{{ bigimg[0][1] | strip | xml_escape }}</span>
 </header>
 
-{% else %}
-<div class="intro-header"></div>
-{% endif %}
+{%- if include.type == "post" -%}
+<div class="container">
+<div class="row">
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 {{ include.type }}-heading">
+{%- include post-meta.html post=page style="full" -%}
+</div></div></div>
+{%- endif -%}
+
+{%- else -%}{% comment %} No bigimg {% endcomment %}
+
+{%- if include.type == "post" -%}
+{%- include post-meta.html post=page style="full" -%}
+{%- endif -%}
+
+</div></div></div>
+</header>
+
+{%- endif -%}

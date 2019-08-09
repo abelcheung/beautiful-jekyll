@@ -71,6 +71,8 @@ var main = {
     main.initImgs();
   },
 
+  // FIXME: Leaks memory after prolonged run
+  // To be reimplemented as Bootstrap carousel later
   initImgs: function () {
     // If the page was large images to randomly select from, choose an image
     if ($("#header-big-imgs").length > 0) {
@@ -94,17 +96,17 @@ var main = {
         // if I want to do something once the image is ready: `prefetchImg.onload = function(){}`
 
         setTimeout(function () {
-          var img = $("<div></div>").addClass("big-img-transition").css("background-image", 'url(' + src + ')');
-          $(".intro-header.big-img").prepend(img);
-          setTimeout(function () { img.css("opacity", "1"); }, 50);
+          var $img = $("<div></div>").addClass("big-img-transition").css("background-image", 'url(' + src + ')');
+          $img.prependTo( $('header.has-img') );
+          setTimeout(function () { $img.css("opacity", "1"); }, 50);
 
           // after the animation of fading in the new image is done, prefetch the next one
           //img.one("transitioned webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
           setTimeout(function () {
             main.setImg(src, desc);
-            img.remove();
+            $img.remove();
             getNextImg();
-          }, 1000);
+          }, 2000);
           //});
         }, 6000);
       };
@@ -128,8 +130,8 @@ var main = {
   },
 
   setImg: function (src, desc) {
-    $(".intro-header.big-img").css("background-image", 'url(' + src + ')');
-    if (typeof desc !== typeof undefined && desc !== false) {
+    $("header.has-img").css("background-image", 'url(' + src + ')');
+    if (typeof desc === 'string' && desc.length > 0) {
       $(".img-desc").text(desc).show();
     } else {
       $(".img-desc").hide();
