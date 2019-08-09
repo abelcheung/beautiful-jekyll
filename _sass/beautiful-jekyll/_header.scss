@@ -37,7 +37,8 @@ header.has-img {
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
-		transition: opacity 2s linear;
+		-webkit-transition: opacity 2s linear;
+		        transition: opacity 2s linear;
 	}
 }
 

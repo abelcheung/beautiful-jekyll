@@ -20,5 +20,8 @@
 	margin: 30px auto 0;
 	border-top: 4px solid $text-col;
 	p { margin: 1em 0 }
-	ul, ol { padding-inline-start: 1em }
+	ul, ol {
+		-webkit-padding-start: 1em;
+		        padding-inline-start: 1em
+	}
 }
