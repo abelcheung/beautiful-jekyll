@@ -53,20 +53,25 @@ var foo = function(x) {
 foo(3)
 {% endhighlight %}
 
-## Boxes
+## Callout Boxes
 You can add notification, warning and error boxes like this:
 
-### Notification
+### Info
 
-{: .box-note}
-**Note:** This is a notification box.
+{: .callout .callout-info}
+**Info:** This is a callout box.
+
+### Success
+
+{: .callout .callout-success}
+**Success:** This is a callout box.
 
 ### Warning
 
-{: .box-warning}
-**Warning:** This is a warning box.
+{: .callout .callout-warning}
+**Warning:** This is a callout box.
 
 ### Error
 
-{: .box-error}
-**Error:** This is an error box.
+{: .callout .callout-danger}
+**Error:** This is a callout box.
