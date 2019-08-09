@@ -1,14 +1,18 @@
+// Some basic site style customization variables
+// Check out /_sass/bootstrap/_variables.scss for usable variables
+
 // Color settings
-$navbar-col         : #F5F5F5;
-$navbar-text-col    : #404040;
-$navbar-children-col: #F5F5F5;
-$page-col           : #FFFFFF;
+$text-col           : $gray-dark;
+$navbar-text-col    : $text-col;
+$footer-text-col    : $gray-light;
+
+$page-col           : white;
+$navbar-col         : scale-color($color: $page-col, $lightness: -4%);
+$navbar-children-col: $navbar-col;
 $link-col           : #008AFF;
-$hover-col          : #0085A1;
-$footer-col         : #F5F5F5;
-$footer-text-col    : #777777;
-$footer-link-col    : #404040;
-$text-col           : #404040;
+$hover-col          : scale-color($color: $link-col, $lightness: -15%);
+$footer-col         : $navbar-col;
+$footer-link-col    : $text-col;
 
 // Default font
 $font-family-ui: "Open Sans", $font-family-sans-serif;
@@ -17,10 +21,10 @@ $font-family-content: Lora, $font-family-serif;
 $font-weight-content: normal;
 
 // Background images
-// Paths are relative to the main CSS file (assets/css/main.css)
+// Paths are relative to the main CSS file (/assets/css/main.css)
 // Unfortunately liquid tag can't be used here, therefore
 // absolute link wouldn't work for Github project pages
 
-// $page-img: "../../img/bgimage.png";
-// $navbar-img: "../../img/bgimage.png";
-$footer-img: "../../img/bgimage.png";
+// $page-img: "../img/bgimage.png"; // i.e. /assets/img/bgimage.png
+// $navbar-img: "../img/bgimage.png";
+$footer-img: "../img/bgimage.png";
