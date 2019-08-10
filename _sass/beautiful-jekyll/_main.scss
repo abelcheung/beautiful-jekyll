@@ -30,12 +30,20 @@ blockquote {
 blockquote p:first-child {
   margin-top: 0;
 }
-hr.small {
-  max-width: 100px;
+hr {
+  width: 80%;
+  height: 3px;
+  margin: 30px auto;
+  border: none;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to right, transparent, $text-col, transparent);
+  &.short {
+    width: 200px;
   margin: 15px auto;
-  border-width: 4px;
-  border-color: inherit;
-  border-radius: 3px;
+  }
+}
+article {
+  margin-bottom: 30px;
 }
 
 ::-moz-selection {
