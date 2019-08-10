@@ -15,13 +15,29 @@
 	}
 }
 .footnotes {
+	position: relative;
 	font-size: 85%;
 	width: 80%;
-	margin: 30px auto 0;
-	border-top: 4px solid $text-col;
+	margin: 30px auto;
+	border-top: 2px solid $text-col;
 	p { margin: 1em 0 }
 	ul, ol {
 		-webkit-padding-start: 1em;
 		        padding-inline-start: 1em
+	}
+	&::before {
+		display: block;
+		position: absolute;
+		top: (-18px * 0.85 * 1.1 / 2 - 6px); // line-height ÷ 2 + borders + v padding
+		left: 15%;
+		content: "Footnote";
+		font-family: $font-family-content;
+		font-style: italic;
+		line-height: 1.1;
+		padding: 2px 5px;
+		border: 2px solid $text-col;
+		border-radius: $border-radius-base;
+		background-color: $page-col;
+		z-index: 1;
 	}
 }
