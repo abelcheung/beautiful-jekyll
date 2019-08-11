@@ -1,26 +1,20 @@
 {%- assign p = include.post -%}
 <div class="post-meta">
 
-<div class="post-time">
+<div class="post-time small">
 <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%B %-d, %Y" }}</time>
 {% if p.last_modified_at -%}
-	( Updated
-	<time datetime="{{ p.last_modified_at | date_to_xmlschema }}">{{ p.last_modified_at | date: "%B %-d, %Y" }}</time> )
+	(Updated
+	<time datetime="{{ p.last_modified_at | date_to_xmlschema }}">{{ p.last_modified_at | date: "%B %-d, %Y" }}</time>)
 {% endif -%}
 </div>
 
 {%- if include.style == "full" and p.tags.size > 0 %}
-<div class="post-tags">
-<ul class="list-inline">
+<div class="post-tag-list">
+<ul class="list-inline" aria-label="Tags list">
 {%- for tag in p.tags %}
-	<li><a href="{{ tag | slugify | prepend: '/tags/#' | relative_url }}">#{{ tag }}</a></li>
-	{%- comment %}
-	Not using array_to_sentence_string filter. Don't want to add even more
-	constructs that only works for single language -- Jekyll is already
-	English only right now, and intensified by the fact that GitHub runs
-	Jekyll in safe mode (therefore no I18N plugins allowed)
-	{% endcomment %}
-{%- endfor -%}
+	<li><a class="tag label label-default" href="{{ tag | slugify | prepend: '/tags/#' | relative_url }}">{{ tag }}</a></li>
+{%- endfor %}
 </ul></div>
 {%- endif %}
 

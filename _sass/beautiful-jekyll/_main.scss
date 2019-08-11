@@ -75,9 +75,16 @@ img {
   @include font-weight($font-weight-content);
 }
 
+.label {
+  padding: .2em .5em;
+}
+
 .list-inline {
   display: inline-block;
   margin-bottom: 0;
+  > li {
+    margin-top: .5em;
+  }
 }
 
 /* --- Navbar --- */
