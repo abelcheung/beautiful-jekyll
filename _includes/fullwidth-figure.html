@@ -1,0 +1,13 @@
+{% comment %}
+Create a full width figure with caption.
+
+Include parameters:
+alt="string": Image alt text
+caption="string" (optional): Figure caption, defaults to alt text if absent
+
+{% endcomment -%}
+{%- assign caption = include.caption | default: include.alt -%}
+<figure class="center-block">
+	<img src="{{ include.src | relative_url }}" alt="{{ include.alt }}" class="img-responsive img-rounded center-block" />
+	<figcaption>{{ caption | prepend: "Figure: " | markdownify }}</figcaption>
+</figure>

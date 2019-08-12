@@ -1,5 +1,10 @@
 /* --- General --- */
 
+%small-ui-font {
+	font-family: $font-family-ui;
+	font-size: 85%;
+}
+
 body {
   font-family: $font-family-ui;
   font-size: 18px;
@@ -85,6 +90,19 @@ img {
   > li {
     margin-top: .5em;
   }
+}
+
+figure {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+figcaption {
+	@extend %small-ui-font;
+	text-align: center;
+	> p {
+		margin: 0;
+	}
 }
 
 /* --- Navbar --- */
