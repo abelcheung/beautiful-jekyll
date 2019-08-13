@@ -1,27 +1,23 @@
+{%- comment -%}
+TODO: Consider pure CSS dropdown as fallback in noscript
+{%- endcomment -%}
 {%- assign urlEncoded   = page.url | absolute_url | url_encode -%}
 {%- assign titleEncoded = page.title | url_encode -%}
 
-<div id="social-share-section">
-<span aria-hidden="true">Share on: </span>
-<ul class="list-inline">
-
-{%- for social in site.shareable-link -%}
+<div id=social-share-menu class="dropdown pull-right">
+	<button class="btn btn-default dropdown-toggle dropdown-menu-right" type="button"
+	id="social-share-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Share on
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="social-share-btn">
+	{%- for social in site.shareable-link -%}
 	{%- assign element = site.data.SocialNetworks[social] -%}
 	{%- unless element.shareURL -%}
 		{%- continue -%}
 	{%- endunless -%}
 	{%- assign href = element.shareURL | replace: '@url@', urlEncoded | replace: '@title@', titleEncoded %}
-	<li><a href="{{ href }}" class="social-share-icon" aria-label="Share on {{ element.name }}" title="Share on {{ element.name }}">
-	{% if element.icon-unstacked -%}
-		<i class="{{ element.icon }} fa-2x" aria-hidden="true"></i>
-	{%- else -%}
-		<span class="fa-stack" aria-hidden="true">
-			<i class="fas fa-square fa-stack-2x"></i>
-			<i class="{{ element.icon }} fa-stack-1x fa-inverse"></i>
-		</span>
-	{%- endif %}
-	</a></li>
-{% endfor -%}
-
-</ul>
+		<li><a href="{{ href }}" aria-label="Share on {{ element.name }}">{{ element.name }}</a></li>
+	{% endfor -%}
+	</ul>
 </div>

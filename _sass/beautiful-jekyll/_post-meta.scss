@@ -1,16 +1,16 @@
 /* Post metadata (creation time, tags, etc) */
 
 .post-meta {
-	color: rgba(black,60%);
-	font-family: $font-family-ui;
-	font-style: normal;
-	> *:not(:last-child) {
-		margin-bottom: 0.3em;
-	}
+	text-align: left;
 }
 
-.post-time:before {
+.post-time {
+	color: rgba(black,60%);
+	font-family: $font-family-content;
+	font-style: italic;
+	&:before {
 	@include fas-solid("\f304", null, 0.3em); // fa-pen
+	}
 }
 .tag:before {
 	@include fas-solid("\f02b", null, 0.3em); // fa-tag

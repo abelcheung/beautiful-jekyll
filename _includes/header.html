@@ -73,15 +73,22 @@ header for the sake of readability.
 <span class='img-desc' {% unless bigimg[0][1].size > 0 %}style="display: none"{% endunless %}>{{ bigimg[0][1] | strip | xml_escape }}</span>
 </header>
 
-{%- if include.type == "post" -%}
+{%- if include.type == "post" or page.shareable and site.shareable-link.size > 0 -%}
 <div class="container">
 <div class="row">
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 {{ include.type }}-heading">
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-heading">
+{%- if page.shareable and site.shareable-link.size > 0 -%}
+{%- include social-share.html -%}
+{%- endif -%}
 {%- include post-meta.html post=page style="full" -%}
 </div></div></div>
 {%- endif -%}
 
 {%- else -%}{% comment %} No bigimg {% endcomment %}
+
+{%- if page.shareable and site.shareable-link.size > 0 -%}
+{%- include social-share.html -%}
+{%- endif -%}
 
 {%- if include.type == "post" -%}
 {%- include post-meta.html post=page style="full" -%}

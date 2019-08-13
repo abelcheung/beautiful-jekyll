@@ -105,6 +105,20 @@ figcaption {
 	}
 }
 
+.dropdown-menu {
+  background-color: $page-col;
+  > li > a {
+    color: $text-col;
+    &:hover, &:focus {
+      background-color: rgba(black, 5%);
+    }
+  }
+}
+
+.btn-default {
+  @include button-variant($text-col, $page-col, scale-color($page-col, $lightness: -20%));
+}
+
 /* --- Navbar --- */
 
 .navbar-custom {
