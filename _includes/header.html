@@ -44,7 +44,8 @@ Canonicalize all possible setting situations as 2-dim array
 <div class="row">
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 {{ include.type }}-heading">
 
-{%- if page.use-site-title -%}
+<div class="heading-title">
+{% if page.use-site-title -%}
 	<h1>{{ site.title }}</h1>
 	<hr class="short" />
 	<h2>{{ site.description }}</h2>
@@ -54,7 +55,8 @@ Canonicalize all possible setting situations as 2-dim array
 		<hr class="short" />
 		<h2>{{ page.subtitle }}</h2>
 	{%- endif -%}
-{%- endif -%}
+{%- endif %}
+</div>
 
 {%- comment %}
 
