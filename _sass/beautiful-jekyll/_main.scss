@@ -80,6 +80,20 @@ img {
   @include font-weight($font-weight-content);
 }
 
+// Large initial cap
+.main-content > p:first-of-type::first-letter {
+  line-height: 1;
+  font-weight: bold;
+  font-size: 300%; // line height x 2
+  float: left;
+  margin-right: 0.15em;
+  vertical-align: text-top;
+  // Top of initial cap not aligned with text top in Firefox
+  @-moz-document url-prefix() {
+    margin-top: 0.15em;
+  }
+}
+
 .label {
   padding: .2em .5em;
 }
