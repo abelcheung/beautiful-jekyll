@@ -8,10 +8,25 @@
 	color: $text-dim-col;
 	font-family: $font-family-content;
 	font-style: italic;
+	> *:not(:last-child) {
+		margin-right: 0.5em;
+	}
+}
+
+.post-creation-time {
+	white-space: nowrap;
 	&:before {
 	@include fas-solid("\f304", null, 0.3em); // fa-pen
 	}
 }
+
+.post-modified-time {
+	white-space: nowrap;
+	&:before {
+		@include fas-solid("\f0ad", null, 0.3em); // fa-wrench
+	}
+}
+
 .tag:before {
 	@include fas-solid("\f02b", null, 0.3em); // fa-tag
 }

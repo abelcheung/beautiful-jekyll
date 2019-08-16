@@ -2,10 +2,11 @@
 <div class="post-meta">
 
 <div class="post-time small">
-<time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%B %-d, %Y" }}</time>
+<span class="sr-only">Posted on </span>
+<time class="post-creation-time" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%b %-d, %Y" }}</time>
 {% if p.last_modified_at -%}
-	(Updated
-	<time datetime="{{ p.last_modified_at | date_to_xmlschema }}">{{ p.last_modified_at | date: "%B %-d, %Y" }}</time>)
+<span class="post-modified-time">Updated
+	<time datetime="{{ p.last_modified_at | date_to_xmlschema }}">{{ p.last_modified_at | date: "%b %-d, %Y" }}</time></span>
 {% endif -%}
 </div>
 

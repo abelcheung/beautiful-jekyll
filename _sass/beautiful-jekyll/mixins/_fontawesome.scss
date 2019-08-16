@@ -1,6 +1,7 @@
 @mixin fontawesome ($content, $pad-left, $pad-right) {
 	content: "#{$content}";
 	display: inline-block;
+	font-style: normal;
 	padding-left : #{$pad-left};
 	padding-right: #{$pad-right};
 }
