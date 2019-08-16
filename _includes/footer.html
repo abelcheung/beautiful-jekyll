@@ -18,12 +18,11 @@
 	{%- endcase -%}
 	{%- endcapture %}
 	<li>
-		<a href="{{ social_url }}" title="{{ element.name }}">
+		<a href="{{ social_url }}" aria-label="{{ element.name }}" title="{{ element.name }}">
 		<span class="fa-stack fa-lg" aria-hidden="true">
 			<i class="fas fa-circle fa-stack-2x"></i>
 			<i class="{{ element.icon }} fa-stack-1x fa-inverse"></i>
 		</span>
-		<span class="sr-only">{{ element.name }}</span>
 		</a>
 	</li>
 	{% endfor %}
@@ -33,7 +32,7 @@
 <ul id="copyright">
 <li><span>&#xA9; {{ site.author.name }}</span></li>
 <li><span>{{ site.time | date: '%Y' }}</span></li>
-<li><span>All Right Reserved</span></li>
+<li><span>All Rights Reserved</span></li>
 
 {% include trackers.html place='footer' %}
 </ul>
