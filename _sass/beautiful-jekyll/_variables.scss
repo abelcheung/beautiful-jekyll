@@ -3,8 +3,9 @@
 
 // Color settings
 $text-col           : $gray-dark;
+$text-dim-col       : $gray;
 $navbar-text-col    : $text-col;
-$footer-text-col    : $gray-light;
+$footer-text-col    : $text-dim-col;
 
 $page-col           : white;
 $navbar-col         : scale-color($color: $page-col, $lightness: -4%);

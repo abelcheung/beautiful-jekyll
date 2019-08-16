@@ -5,7 +5,7 @@
 }
 
 .post-time {
-	color: rgba(black,60%);
+	color: $text-dim-col;
 	font-family: $font-family-content;
 	font-style: italic;
 	&:before {

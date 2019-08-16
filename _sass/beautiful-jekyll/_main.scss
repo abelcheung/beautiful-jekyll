@@ -29,8 +29,9 @@ a:focus {
   color: $hover-col;
 }
 blockquote {
-  color: #808080;
+  color: $text-dim-col;
   font-style: italic;
+  border-left-color: rgba(black,20%);
 }
 blockquote p:first-child {
   margin-top: 0;
@@ -41,7 +42,7 @@ hr {
   margin: 30px auto;
   border: none;
   background-repeat: no-repeat;
-  background-image: linear-gradient(to right, transparent, $text-col, transparent);
+  background-image: linear-gradient(to right, transparent, $text-dim-col, transparent);
   &.short {
     width: 200px;
   margin: 15px auto;
@@ -304,7 +305,6 @@ figcaption {
   font-weight: $font-weight-ui;
   letter-spacing: 1px;
   padding: 10px 5px;
-  background-color: #FFF;
   border-radius: 0;
   color: #404040;
 }
