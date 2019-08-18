@@ -1,6 +1,9 @@
 @import "bootstrap/mixins/buttons";
+@import "bootstrap/mixins/table-row";
+
+@import "beautiful-jekyll/mixins/vendor-prefix";
 
 @import "beautiful-jekyll/mixins/bgimage";
-@import "beautiful-jekyll/mixins/vendor-prefix";
 @import "beautiful-jekyll/mixins/font-weight";
 @import "beautiful-jekyll/mixins/fontawesome";
+@import "beautiful-jekyll/mixins/table";

@@ -1,0 +1,65 @@
+/* --- Table --- */
+
+caption {
+	@extend %small-ui-font;
+	text-align: center;
+	color: $text-dim-col;
+	caption-side: bottom;
+}
+
+.table {
+	margin-top: 30px;
+	.table-responsive & {
+		margin-top: 0;
+	}
+	@include table-global {
+				border-top: 1px solid rgba(black,15%);
+			}
+	> thead > tr {
+		> th, > td {
+			border-bottom: 2px solid rgba(black,15%);
+		}
+	}
+	> tbody + tbody {
+		border-top: 2px solid rgba(black,15%);
+	}
+	// Nesting
+	.table {
+		background-color: transparent;
+	}
+}
+
+.table-responsive {
+	margin-top: 30px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+	background-color: rgba(black, 5%);
+}
+
+.table-hover > tbody > tr:hover {
+	background-color: rgba(black, 8%);
+}
+
+.table-bordered {
+	border: 1px solid rgba(black, 15%);
+	@include table-global {
+				border: 1px solid rgba(black,15%);
+			}
+}
+
+// Shortcut for entering manual HTML table
+@each $dir in (left,right,center) {
+	table.text-#{$dir} {
+		@include table-global {
+			text-align: $dir;
+		}
+	}
+}
+
+// Overriding bootstrap default contextual colors
+@include table-row-variant('active', rgba(black, 8%));
+@include table-row-variant('success', transparentize(scale-color($state-success-bg, $lightness: -10%), 0.5));
+@include table-row-variant('info', transparentize(scale-color($state-info-bg, $lightness: -10%), 0.5));
+@include table-row-variant('warning', transparentize(scale-color($state-warning-bg, $lightness: -10%), 0.5));
+@include table-row-variant('danger', transparentize(scale-color($state-danger-bg, $lightness: -10%), 0.5));

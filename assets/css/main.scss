@@ -15,6 +15,7 @@
 @import "beautiful-jekyll/footer";
 @import "beautiful-jekyll/header";
 @import "beautiful-jekyll/post-meta";
+@import "beautiful-jekyll/table";
 @import "beautiful-jekyll/main";
 
 {%- if site.staticman.repository and site.staticman.branch %}

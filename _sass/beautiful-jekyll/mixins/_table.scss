@@ -1,0 +1,11 @@
+// Apply style on all table cells (but not on nested table)
+
+@mixin table-global {
+	> thead, > tbody, > tfoot {
+		> tr {
+			> th, > td {
+				@content;
+			}
+		}
+	}
+}
