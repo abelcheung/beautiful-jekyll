@@ -6,17 +6,21 @@
 @import "beautiful-jekyll/variables";
 @import "beautiful-jekyll/mixins";
 
+@import "beautiful-jekyll/scaffolding";
 @import "beautiful-jekyll/pygment";
+
 @import "beautiful-jekyll/callout";
 @import "beautiful-jekyll/codeblock";
-@import "beautiful-jekyll/post-preview";
-@import "beautiful-jekyll/tags";
 @import "beautiful-jekyll/footnote";
 @import "beautiful-jekyll/footer";
 @import "beautiful-jekyll/header";
+@import "beautiful-jekyll/navbar";
+@import "beautiful-jekyll/pager";
+@import "beautiful-jekyll/post-content";
 @import "beautiful-jekyll/post-meta";
+@import "beautiful-jekyll/post-preview";
 @import "beautiful-jekyll/table";
-@import "beautiful-jekyll/main";
+@import "beautiful-jekyll/tags";
 
 {%- if site.staticman.repository and site.staticman.branch %}
 @import "beautiful-jekyll/staticman";

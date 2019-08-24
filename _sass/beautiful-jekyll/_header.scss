@@ -10,7 +10,9 @@ header {
 	-webkit-transition: margin-top .5s ease-in-out;
 	        transition: margin-top .5s ease-in-out;
 	nav:not(.top-nav-short) + & {
+		@media only screen and (min-width: $screen-sm-min) {
 		margin-top: 90px;
+		}
 	}
 }
 

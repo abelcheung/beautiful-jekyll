@@ -1,0 +1,19 @@
+/* --- Pager --- */
+
+.pager li a {
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: $font-weight-ui;
+	letter-spacing: 1px;
+	padding: 10px 20px;
+	color: $text-col;
+	@media only screen and (max-width: $screen-xs-max) {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	&:hover, &:focus {
+		color: white;
+		background-color: $hover-col;
+		border: 1px solid $link-col;
+	}
+}

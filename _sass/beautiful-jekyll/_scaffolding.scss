@@ -1,0 +1,117 @@
+/* --- Basic style, and override unsatisfactory Bootstrap defaults --- */
+
+::-moz-selection,
+     ::selection {
+	color: white;
+	text-shadow: none;
+	background-color: $hover-col;
+}
+
+p {
+	line-height: 1.5;
+	margin: 30px 0;
+}
+
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
+	@include font-weight($font-weight-ui);
+}
+
+a {
+	color: $link-col;
+	&:hover, &:focus {
+		color: $hover-col;
+		code {
+			color: $hover-col;
+		}
+	}
+}
+
+code {
+	padding: 2px;
+	color: inherit;
+	background-color: rgba(black,5%);
+}
+
+// reduce list indent for mobile
+@media only screen and (max-width: $screen-xs-max) {
+	ul, ol {
+		-webkit-padding-start: 1em;
+		        padding-inline-start: 1em }
+}
+
+%small-ui-font { // caption for figure, table, etc
+	font-family: $font-family-ui;
+	font-size: 85%;
+}
+
+body {
+	font-family: $font-family-ui;
+	font-size: 1.8rem;
+	color: $text-col;
+	background-color: $page-col;
+	@if global-variable-exists(page-img) {
+		@include bgimage($page-img);
+	}
+}
+blockquote {
+	color: $text-dim-col;
+	font-style: italic;
+	border-left-color: rgba(black,20%);
+	> *:first-child {
+		margin-top: 0;
+	}
+	> *:last-child {
+		margin-bottom: 0;
+	}
+	@media only screen and (max-width: $screen-xs-min - 1) {
+		padding-left: 0.5em;
+		padding-right: 0;
+	}
+}
+
+figcaption {
+	@extend %small-ui-font;
+	text-align: center;
+	> p {
+		margin: 0;
+	}
+}
+
+hr {
+	width: 80%;
+	height: 3px;
+	margin: 30px auto;
+	border: none;
+	background-repeat: no-repeat;
+	background-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop($text-dim-col), to(transparent));
+	background-image: linear-gradient(to right, transparent, $text-dim-col, transparent);
+	&.short {
+		width: 200px;
+		margin: 15px auto;
+	}
+}
+
+img {
+	max-width: 100%;
+}
+
+article > * {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.label {
+	padding: .2em .5em;
+}
+
+.list-inline {
+	display: inline-block;
+	margin-bottom: 0;
+	> li {
+		margin-top: .5em;
+	}
+}
+
+.btn-default {
+	@include button-variant($text-col, $page-col, scale-color($page-col, $lightness: -20%));
+}
