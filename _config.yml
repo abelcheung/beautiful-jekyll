@@ -1,13 +1,5 @@
-# --- General options --- #
-
 # Use this Github repository as basis of remote theme
 remote_theme: abelcheung/beautiful-jekyll
-
-# Name of website
-title: My website
-
-# Short description of your site
-description: A virtual proof that I'm awesome
 
 # --- Local development options ---
 # If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
@@ -18,6 +10,29 @@ description: A virtual proof that I'm awesome
 
 # baseurl should be an empty string
 #baseurl: ""
+
+# --- Site info and SEO options --- #
+# Due to usage of jekyll-seo-tag plugin, please follow this link on
+# configuration of site information
+# https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
+
+# Name of website
+title: My website
+
+# Short description of your site
+description: A virtual proof that I'm awesome
+
+# Global author info
+author:
+  name: Some Person
+
+# twitter:
+#   username: dummyuser
+#   card: summary
+# facebook:
+#   app_id: 1234
+#   publisher: 1234
+#   admins: 1234
 
 # --- Navigation bar options --- #
 
@@ -48,8 +63,6 @@ css:
 
 # Change all these values or delete the ones you don't want.
 # Important: you must keep the "name" parameter, everything else you can remove
-author:
-  name: Some Person
 
 # Select your active Social Network Links.
 # Uncomment the links you want to show in the footer and add your information to each link.
@@ -244,6 +257,7 @@ requirejs:
       href: 'https://www.google.com/recaptcha/api'
 
 plugins:
+  - jekyll-seo-tag
   - jekyll-remote-theme
   - jekyll-paginate
   - jekyll-sitemap
